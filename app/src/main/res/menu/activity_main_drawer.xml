@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_items"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_items" />
+        <item
+            android:id="@+id/nav_shops"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_shops" />
+        <item
+            android:id="@+id/nav_select_shop"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_select_shop" />
+        <item
+            android:id="@+id/nav_return_items"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_return_items" />
+        <item
+            android:id="@+id/nav_all_invoices"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_all_invoices" />
+        <item
+            android:id="@+id/nav_download_data"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_upload_data"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_upload_data" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/menu_settings" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+</menu>
