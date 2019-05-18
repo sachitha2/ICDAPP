@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", context.MODE_PRIVATE);
         String Username = sharedPreferences.getString("uName","");
         int loginStatus = sharedPreferences.getInt("loginStatus",-1);
+        int vehicleId = sharedPreferences.getInt("vehicleId",-1);
         if(loginStatus != 1){
             return true;
         }else {
@@ -137,11 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent intentShops = new Intent(MainActivity.this, Shops.class);
             startActivity(intentShops);
-
-        } else if (id == R.id.nav_select_shop) {
-
-            Intent intentSelectShops = new Intent(MainActivity.this, SelectShop.class);
-            startActivity(intentSelectShops);
 
         } else if (id == R.id.nav_return_items) {
 

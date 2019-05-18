@@ -147,20 +147,46 @@ public class ListViewAdapter extends BaseAdapter {
                 });
                 break;
 //
-            case "PracticeUnits":
-//                btnView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        //Intent intentPractice = new Intent();
-//                        ///intentPractice.setClass(context, Practice.class);
-//                        //intentPractice.putExtra("unitId", Ide[position]);
-//                        //intentPractice.putExtra("unitName", Namese[position]);
+            case "ReturnItems":
 //
-//                        //context.startActivity(intentPractice);
-//
-//                        //Toast.makeText(context, Id[position] + " was clicked", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                btnView = myInflater.inflate(R.layout.shops_list_layout,null);
+
+                TextView RshopId = (TextView)btnView.findViewById(R.id.txtShopId);
+                TextView RshopName = (TextView)btnView.findViewById(R.id.txtShopName);
+                TextView Raddress = (TextView)btnView.findViewById(R.id.txtAddress);
+                TextView Rcontact = (TextView)btnView.findViewById(R.id.txtContact);
+                TextView Rroot = (TextView)btnView.findViewById(R.id.txtRoot);
+                TextView RsDate = (TextView)btnView.findViewById(R.id.txtSDate);
+                TextView RidNo = (TextView)btnView.findViewById(R.id.txtIdNo);
+                TextView Rcredit = (TextView)btnView.findViewById(R.id.txtCredit);
+
+                RshopId.setText(ShopId[position]);
+                RshopName.setText(ShopName[position]);
+                Raddress.setText(Address[position]);
+                Rcontact.setText(Contact[position]);
+                Rroot.setText(Root[position]);
+                RsDate.setText(SDate[position]);
+                RidNo.setText(IdNo[position]);
+                Rcredit.setText(Credit[position]);
+
+                btnView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intentAddReturnItems = new Intent(context, AddReturnItems.class);
+                        intentAddReturnItems.putExtra("ShopId", ShopId[position]);
+                        intentAddReturnItems.putExtra("ShopName", ShopName[position]);
+                        intentAddReturnItems.putExtra("Address", Address[position]);
+                        intentAddReturnItems.putExtra("Contact", Contact[position]);
+                        intentAddReturnItems.putExtra("Root", Root[position]);
+                        intentAddReturnItems.putExtra("SDate", SDate[position]);
+                        intentAddReturnItems.putExtra("IdNo", IdNo[position]);
+                        intentAddReturnItems.putExtra("Credit", Credit[position]);
+                        context.startActivity(intentAddReturnItems);
+                        Toast.makeText(context, ShopName[position] + " was clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
 
         }

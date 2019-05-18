@@ -43,8 +43,8 @@ public class Login extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        View backgroundimage = findViewById(R.id.loginBackground);
-        Drawable loginBackground = backgroundimage.getBackground();
+        View backgroundImage = findViewById(R.id.loginBackground);
+        Drawable loginBackground = backgroundImage.getBackground();
         loginBackground.setAlpha(70);
 
         edtUsername = (EditText) findViewById(R.id.edtUsername);
@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        String url = "http://cms.infinisolutionslk.com/APP/login.json.php?uName="+edtUsername.getText()+"&uPass="+edtPassword.getText();
+        String url = "http://icd.infinisolutionslk.com/checkLoginJSON.php?uName="+edtUsername.getText()+"&uPass="+edtPassword.getText();
 
         JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -92,11 +92,13 @@ public class Login extends AppCompatActivity {
 
                             Integer status = response.getInt("satus");
                             String message = response.getString("Messege");
-                            //String logOutTime = response.getString("logOutTime");
+                            Integer vehicleId = response.getInt("vehicleId");
 
                             if (status == 1){
+
                                 progressDialog.hide();
-                                //Check if this email is available in cache
+
+                                //Check if this user is available in cache
 
                                 if (lookForUsername(Login.this).equals(edtUsername.getText())){
 
@@ -106,6 +108,7 @@ public class Login extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                     editor.putInt("loginStatus", 1);
+                                    editor.putInt("vehicleId", vehicleId);
                                     editor.apply();
 
                                 }else{
@@ -117,6 +120,7 @@ public class Login extends AppCompatActivity {
 
                                     editor.putString("uName", edtUsername.getText().toString());
                                     editor.putInt("loginStatus", 1);
+                                    editor.putInt("vehicleId", vehicleId);
                                     editor.apply();
 
                                 }
@@ -136,8 +140,8 @@ public class Login extends AppCompatActivity {
 
                             }else if (status == 0){
 
-                                //make the progress bar invisible before show the error message
-                                //progressBar.setVisibility(View.GONE);
+                                progressDialog.hide();
+
                                 Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
 
                             }
