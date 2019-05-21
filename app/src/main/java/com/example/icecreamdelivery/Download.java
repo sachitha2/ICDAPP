@@ -1,22 +1,40 @@
 package com.example.icecreamdelivery;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Download extends AppCompatActivity {
 
     SQLiteDatabase sqLiteDatabase;
+
+    private RequestQueue requestQueueForStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 
+        requestQueueForStock = Volley.newRequestQueue(Download.this);
+
         createDatabaseAndTables();
 
-        Toast.makeText(Download.this, "Download Complete", Toast.LENGTH_SHORT).show();
+        jsonParseStockTable();
+
+        //Toast.makeText(Download.this, "Download Complete", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -106,4 +124,103 @@ public class Download extends AppCompatActivity {
 
     }
 
+    //Downloads Stock and Price Range tables
+    public void jsonParseStockTable(){
+
+        //String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=" + MainActivity.loggedAccount;
+        String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=sam";
+
+        JsonObjectRequest requestDownloadStock = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            //Read json and assign them to local variables
+
+                            JSONArray Stock = response.getJSONArray("stock");
+
+                            for (int i = 0; i < Stock.length(); i++){
+
+                                JSONObject temp01 = Stock.getJSONObject(i);
+
+                                sqLiteDatabase.execSQL("INSERT INTO stock (id, itemId, amount, rAmount, status) VALUES (" + temp01.getString("id") +
+                                        ", "+temp01.getString("itemId")+
+                                        ", "+temp01.getString("amount")+
+                                        ", "+temp01.getString("amount")+
+                                        ", '0');");
+
+
+                                for(int j = 0; j < temp01.getJSONArray("priceRange").length(); j++){
+
+                                    JSONArray pRangeArray = temp01.getJSONArray("priceRange");
+                                    sqLiteDatabase.execSQL("INSERT INTO price_range (itemId, price) VALUES (" + temp01.getString("itemId") +
+                                            ", "+pRangeArray.getString(j)+
+                                            ");");
+
+
+
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueueForStock.add(requestDownloadStock);
+
+    }
+
+    public void jsonParseItemTable(){
+
+        String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=" + MainActivity.loggedAccount;
+
+        JsonObjectRequest requestDownloadStock = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            //Read json and assign them to local variables
+
+                            JSONArray Stock = response.getJSONArray("stock");
+
+
+                            for (int i = 0; i < Stock.length(); i++){
+
+                                JSONObject temp01 = Stock.getJSONObject(i);
+
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueueForStock.add(requestDownloadStock);
+
+    }
+
 }
+
+//
+//        String pRange = "";
+//        for(int j = 0; j < temp01.getJSONArray("priceRange").length(); j++){
+//          JSONArray pRangeArray = temp01.getJSONArray("priceRange");
+//          pRange = pRange + pRangeArray.getInt(j);
+//        }
+//        priceRangeStock[i] = pRange;
