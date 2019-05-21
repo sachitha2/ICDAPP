@@ -151,11 +151,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_download_data) {
 
-            Toast.makeText(MainActivity.this, "Downloading...", Toast.LENGTH_SHORT).show();
+            Intent intentDownload = new Intent(MainActivity.this, Download.class);
+            startActivity(intentDownload);
 
         } else if (id == R.id.nav_upload_data) {
 
-            Toast.makeText(MainActivity.this, "Uploading...", Toast.LENGTH_SHORT).show();
+            Intent intentUpload = new Intent(MainActivity.this, Upload.class);
+            startActivity(intentUpload);
 
         } else if (id == R.id.nav_settings) {
 

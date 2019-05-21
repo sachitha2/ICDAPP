@@ -92,11 +92,12 @@ public class Login extends AppCompatActivity {
 
                             Integer status = response.getInt("satus");
                             String message = response.getString("Messege");
-                            Integer vehicleId = response.getInt("vehicleId");
 
                             if (status == 1){
 
                                 progressDialog.hide();
+
+                                Integer vehicleId = response.getInt("vehicleId");
 
                                 //Check if this user is available in cache
 
