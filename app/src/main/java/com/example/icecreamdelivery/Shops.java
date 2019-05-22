@@ -1,15 +1,20 @@
 package com.example.icecreamdelivery;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Shops extends AppCompatActivity {
 
     private ListView shopsList;
 
-    private String[] Id,ShopId,ShopName,Address,Contact,Root,Date,IdNo,Credit;
+    SQLiteDatabase sqLiteShops;
+
+    private String[] Id,ShopId,ShopName,Address,Contact,Root,IdNo,Credit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,30 +23,40 @@ public class Shops extends AppCompatActivity {
 
         shopsList = (ListView) findViewById(R.id.shopsList);
 
-        //name = new String[Lname.length()];
-        Id = new String[10];
-        ShopId = new String[10];
-        ShopName = new String[10];
-        Address = new String[10];
-        Contact = new String[10];
-        Root = new String[10];
-        Date = new String[10];
-        IdNo = new String[10];
-        Credit = new String[10];
+        sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
 
-        for (int i = 0; i < 10; i++){
+        Cursor c =sqLiteShops.rawQuery("SELECT * FROM shop;",null);
+
+        int nRow = c.getCount();
+
+        Id = new String[nRow];
+        ShopId = new String[nRow];
+        ShopName = new String[nRow];
+        Address = new String[nRow];
+        Contact = new String[nRow];
+        Root = new String[nRow];
+        IdNo = new String[nRow];
+        Credit = new String[nRow];
+
+        int i = 0;
+        while (c.moveToNext()){
+
             Id[i] = "" + i;
-            ShopId[i] = "21";
-            ShopName[i] = "Shop Name Here";
-            Address[i] = "Rajangane para, 5 kanuwa.";
-            Contact[i] = "0715559000";
-            Root[i] = "6";
-            Date[i] = "2019-05-17";
-            IdNo[i] = "760382722";
-            Credit[i] = "0";
+            ShopId[i] = c.getString(0);
+            ShopName[i] = c.getString(1);
+            Address[i] = c.getString(2);
+            Contact[i] = c.getString(3);
+            Root[i] = c.getString(4);
+            IdNo[i] = c.getString(5);
+            Credit[i] = c.getFloat(6) + "";
+
+            i++;
+
         }
 
-        ListViewAdapter shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, Date, IdNo, Credit);
+        //Toast.makeText(Shops.this, ShopName[3], Toast.LENGTH_LONG).show();
+
+        ListViewAdapter shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
         shopsList.setAdapter(shopsListViewAdapter);
 
     }

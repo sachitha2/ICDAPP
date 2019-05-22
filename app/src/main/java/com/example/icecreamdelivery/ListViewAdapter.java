@@ -27,7 +27,6 @@ public class ListViewAdapter extends BaseAdapter {
     String[] Address;
     String[] Contact;
     String[] Root;
-    String[] SDate;
     String[] IdNo;
     String[] Credit;
 
@@ -46,7 +45,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     }
 
-    public ListViewAdapter(Context context, String[] Id, String From, String[] ShopId, String[] ShopName, String[] Address, String[] Contact, String[] Root, String[] Date, String[] IdNo, String[] Credit){
+    public ListViewAdapter(Context context, String[] Id, String From, String[] ShopId, String[] ShopName, String[] Address, String[] Contact, String[] Root, String[] IdNo, String[] Credit){
 
         this.context = context;
         this.Id = Id;
@@ -57,7 +56,6 @@ public class ListViewAdapter extends BaseAdapter {
         this.Address = Address;
         this.Contact = Contact;
         this.Root = Root;
-        this.SDate = Date;
         this.IdNo = IdNo;
         this.Credit = Credit;
 
@@ -115,7 +113,6 @@ public class ListViewAdapter extends BaseAdapter {
                 TextView address = (TextView)btnView.findViewById(R.id.txtAddress);
                 TextView contact = (TextView)btnView.findViewById(R.id.txtContact);
                 TextView root = (TextView)btnView.findViewById(R.id.txtRoot);
-                TextView sDate = (TextView)btnView.findViewById(R.id.txtSDate);
                 TextView idNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView credit = (TextView)btnView.findViewById(R.id.txtCredit);
 
@@ -124,7 +121,6 @@ public class ListViewAdapter extends BaseAdapter {
                 address.setText(Address[position]);
                 contact.setText(Contact[position]);
                 root.setText(Root[position]);
-                sDate.setText(SDate[position]);
                 idNo.setText(IdNo[position]);
                 credit.setText(Credit[position]);
 
@@ -138,7 +134,6 @@ public class ListViewAdapter extends BaseAdapter {
                         intentSelectShop.putExtra("Address", Address[position]);
                         intentSelectShop.putExtra("Contact", Contact[position]);
                         intentSelectShop.putExtra("Root", Root[position]);
-                        intentSelectShop.putExtra("SDate", SDate[position]);
                         intentSelectShop.putExtra("IdNo", IdNo[position]);
                         intentSelectShop.putExtra("Credit", Credit[position]);
                         context.startActivity(intentSelectShop);
@@ -156,7 +151,6 @@ public class ListViewAdapter extends BaseAdapter {
                 TextView Raddress = (TextView)btnView.findViewById(R.id.txtAddress);
                 TextView Rcontact = (TextView)btnView.findViewById(R.id.txtContact);
                 TextView Rroot = (TextView)btnView.findViewById(R.id.txtRoot);
-                TextView RsDate = (TextView)btnView.findViewById(R.id.txtSDate);
                 TextView RidNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView Rcredit = (TextView)btnView.findViewById(R.id.txtCredit);
 
@@ -165,7 +159,6 @@ public class ListViewAdapter extends BaseAdapter {
                 Raddress.setText(Address[position]);
                 Rcontact.setText(Contact[position]);
                 Rroot.setText(Root[position]);
-                RsDate.setText(SDate[position]);
                 RidNo.setText(IdNo[position]);
                 Rcredit.setText(Credit[position]);
 
@@ -179,7 +172,6 @@ public class ListViewAdapter extends BaseAdapter {
                         intentAddReturnItems.putExtra("Address", Address[position]);
                         intentAddReturnItems.putExtra("Contact", Contact[position]);
                         intentAddReturnItems.putExtra("Root", Root[position]);
-                        intentAddReturnItems.putExtra("SDate", SDate[position]);
                         intentAddReturnItems.putExtra("IdNo", IdNo[position]);
                         intentAddReturnItems.putExtra("Credit", Credit[position]);
                         context.startActivity(intentAddReturnItems);

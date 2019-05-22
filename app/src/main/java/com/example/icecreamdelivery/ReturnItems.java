@@ -8,7 +8,7 @@ public class ReturnItems extends AppCompatActivity {
 
     private ListView returnItemsList;
 
-    private String[] Id,ShopId,ShopName,Address,Contact,Root,Date,IdNo,Credit;
+    private String[] Id,ShopId,ShopName,Address,Contact,Root,IdNo,Credit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class ReturnItems extends AppCompatActivity {
         Address = new String[10];
         Contact = new String[10];
         Root = new String[10];
-        Date = new String[10];
         IdNo = new String[10];
         Credit = new String[10];
 
@@ -35,12 +34,11 @@ public class ReturnItems extends AppCompatActivity {
             Address[i] = "Rajangane para, 5 kanuwa.";
             Contact[i] = "0715559000";
             Root[i] = "6";
-            Date[i] = "2019-05-17";
             IdNo[i] = "760382722";
             Credit[i] = "0";
         }
 
-        ListViewAdapter returnItemsListViewAdapter = new ListViewAdapter(ReturnItems.this, Id, "ReturnItems", ShopId, ShopName, Address, Contact, Root, Date, IdNo, Credit);
+        ListViewAdapter returnItemsListViewAdapter = new ListViewAdapter(ReturnItems.this, Id, "ReturnItems", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
         returnItemsList.setAdapter(returnItemsListViewAdapter);
 
     }

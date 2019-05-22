@@ -1,9 +1,11 @@
 package com.example.icecreamdelivery;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,7 +23,7 @@ public class Download extends AppCompatActivity {
 
     SQLiteDatabase sqLiteDatabase;
 
-    private RequestQueue requestQueueForStock;
+    private RequestQueue requestQueueForStock, requestQueueForItem, requestQueueForShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +31,14 @@ public class Download extends AppCompatActivity {
         setContentView(R.layout.activity_download);
 
         requestQueueForStock = Volley.newRequestQueue(Download.this);
+        requestQueueForItem = Volley.newRequestQueue(Download.this);
+        requestQueueForShop = Volley.newRequestQueue(Download.this);
 
         createDatabaseAndTables();
 
         jsonParseStockTable();
+        jsonParseItemTable();
+        jsonParseShopTable();
 
         //Toast.makeText(Download.this, "Download Complete", Toast.LENGTH_SHORT).show();
 
@@ -40,7 +46,7 @@ public class Download extends AppCompatActivity {
 
     public void createDatabaseAndTables(){
 
-        sqLiteDatabase = openOrCreateDatabase("ICD", MainActivity.MODE_PRIVATE,null);
+        sqLiteDatabase = openOrCreateDatabase("ICD", Download.MODE_PRIVATE,null);
 
         //Drop Table if Exist
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS stock;");
@@ -79,10 +85,10 @@ public class Download extends AppCompatActivity {
         sqLiteDatabase.execSQL("CREATE TABLE IF  NOT EXISTS shop (" +
                 "id int(6) NOT NULL," +
                 "name varchar(50) NOT NULL," +
-                "address varchar(150) NOT NULL," +
-                "tp varchar(10) NOT NULL," +
+                "address varchar(150)  ," +
+                "tp varchar(10)  ," +
                 "rootId int(4) NOT NULL," +
-                "nic varchar(12) NOT NULL," +
+                "nic varchar(12) ," +
                 "credit float(10) NOT NULL );");
 
 
@@ -122,6 +128,8 @@ public class Download extends AppCompatActivity {
                 "shopId int(6) NOT NULL," +
                 "Total int(10) NOT NULL );");
 
+
+
     }
 
     //Downloads Stock and Price Range tables
@@ -148,17 +156,17 @@ public class Download extends AppCompatActivity {
                                         ", "+temp01.getString("itemId")+
                                         ", "+temp01.getString("amount")+
                                         ", "+temp01.getString("amount")+
-                                        ", '0');");
+                                        ", 0);");
+
 
 
                                 for(int j = 0; j < temp01.getJSONArray("priceRange").length(); j++){
 
                                     JSONArray pRangeArray = temp01.getJSONArray("priceRange");
+
                                     sqLiteDatabase.execSQL("INSERT INTO price_range (itemId, price) VALUES (" + temp01.getString("itemId") +
                                             ", "+pRangeArray.getString(j)+
                                             ");");
-
-
 
                                 }
 
@@ -178,11 +186,12 @@ public class Download extends AppCompatActivity {
 
     }
 
+    //Downloads Item table
     public void jsonParseItemTable(){
 
-        String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=" + MainActivity.loggedAccount;
+        String url = "http://icd.infinisolutionslk.com/JSONGetItems.php";
 
-        JsonObjectRequest requestDownloadStock = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest requestDownloadItem = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -190,12 +199,60 @@ public class Download extends AppCompatActivity {
                         try {
                             //Read json and assign them to local variables
 
-                            JSONArray Stock = response.getJSONArray("stock");
+                            JSONArray Id = response.getJSONArray("id");
+                            JSONArray ItemName = response.getJSONArray("itemName");
+
+                            for (int i = 0; i < Id.length(); i++){
+
+                                sqLiteDatabase.execSQL("INSERT INTO item (itemId, name) VALUES (" + Id.getString(i) +
+                                        ", '"+ItemName.getString(i)+
+                                        "');");
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueueForItem.add(requestDownloadItem);
+
+    }
+
+    //Downloads Shop tables
+    public void jsonParseShopTable(){
+
+        String url = "http://icd.infinisolutionslk.com/jsonGetShops.php";
+
+        JsonObjectRequest requestDownloadShop = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            //Read json and assign them to local variables
+
+                            JSONArray Shop = response.getJSONArray("shop");
 
 
-                            for (int i = 0; i < Stock.length(); i++){
+                            for (int k = 0; k < Shop.length(); k++){
 
-                                JSONObject temp01 = Stock.getJSONObject(i);
+                                JSONObject temp02 = Shop.getJSONObject(k);
+                                Log.d("Shop",k+"");
+                                sqLiteDatabase.execSQL("INSERT INTO shop (id, name, address, tp, rootId, nic, credit) VALUES (" + temp02.getString("id") +
+                                        ", '"+temp02.getString("name")+
+                                        "', '"+temp02.getString("address")+
+                                        "', '"+temp02.getString("tpNumber")+
+                                        "', "+temp02.getString("rootId")+
+                                        ", '"+temp02.getString("idCardN")+
+                                        "', "+temp02.getString("credit")+
+                                        ");");
+//
 
 
                             }
@@ -211,7 +268,7 @@ public class Download extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-        requestQueueForStock.add(requestDownloadStock);
+        requestQueueForShop.add(requestDownloadShop);
 
     }
 

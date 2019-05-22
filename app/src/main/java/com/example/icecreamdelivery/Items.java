@@ -1,5 +1,8 @@
 package com.example.icecreamdelivery;
 
+import android.content.ClipData;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -7,6 +10,8 @@ import android.widget.ListView;
 public class Items extends AppCompatActivity {
 
     private ListView itemsList;
+
+    SQLiteDatabase sqLiteItems;
 
     private String[] Id,ItemId,ItemName,BuyingPrice,Amount,Date,PriceRange;
 
@@ -17,14 +22,20 @@ public class Items extends AppCompatActivity {
 
         itemsList = (ListView) findViewById(R.id.itemsList);
 
-        //name = new String[Lname.length()];
-        Id = new String[10];
-        ItemId = new String[10];
-        ItemName = new String[10];
-        BuyingPrice = new String[10];
-        Amount = new String[10];
-        Date = new String[10];
-        PriceRange = new String[10];
+//        sqLiteItems = openOrCreateDatabase("ICD", Items.MODE_PRIVATE,null);
+//
+//        Cursor c =sqLiteItems.rawQuery("SELECT * FROM item;",null);
+//
+//        int nRow = c.getCount();
+        int nRow = 10;
+
+        Id = new String[nRow];
+        ItemId = new String[nRow];
+        ItemName = new String[nRow];
+        BuyingPrice = new String[nRow];
+        Amount = new String[nRow];
+        Date = new String[nRow];
+        PriceRange = new String[nRow];
 
         for (int i = 0; i < 10; i++){
             Id[i] = "" + i;
