@@ -117,7 +117,7 @@ public class Download extends AppCompatActivity {
         sqLiteDatabase.execSQL("CREATE TABLE IF  NOT EXISTS invoice (" +
                 //"id int(11) PRIMARY KEY AUTOINCREMENT," +
                 "id int(11) NOT NULL," +
-                "dealId int(11) NOT NULL," +
+                "dealId varchar(18) NOT NULL," +
                 "itemId int(11) NOT NULL," +
                 "amount int(11) NOT NULL," +
                 "sPrice float(10) NOT NULL," +
@@ -133,7 +133,7 @@ public class Download extends AppCompatActivity {
         // Creating Deal Table
         sqLiteDatabase.execSQL("CREATE TABLE IF  NOT EXISTS deal (" +
                 //"id bigint PRIMARY KEY AUTOINCREMENT," +
-                "id bigint NOT NULL," +
+                "id varchar(18) NOT NULL," +
                 "shopId int(6) NOT NULL," +
                 "Total int(10) NOT NULL );");
 
