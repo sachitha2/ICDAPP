@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
                 if(haveNet()){
                     jsonParse();
                 }else if(!haveNet()){
-                    Toast.makeText(Login.this,"Network connectin is not available",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this,"Network connection is not available",Toast.LENGTH_SHORT).show();
                 }
             }else {
                 Toast.makeText(Login.this,"Enter Password", Toast.LENGTH_LONG).show();
@@ -168,7 +168,7 @@ public class Login extends AppCompatActivity {
         return sharedPreferences.getString("uName", "");
     }
 
-    private  boolean haveNet(){
+    private boolean haveNet(){
         boolean haveWifi = false;
         boolean haveMobileData = false;
         ConnectivityManager connectivityManager =(ConnectivityManager) getSystemService( CONNECTIVITY_SERVICE);

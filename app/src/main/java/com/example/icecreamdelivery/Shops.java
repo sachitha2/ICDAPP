@@ -5,12 +5,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class Shops extends AppCompatActivity {
 
     private ListView shopsList;
+    EditText search;
+
+    ListViewAdapter shopsListViewAdapter;
 
     SQLiteDatabase sqLiteShops;
 
@@ -22,6 +28,7 @@ public class Shops extends AppCompatActivity {
         setContentView(R.layout.activity_shops);
 
         shopsList = (ListView) findViewById(R.id.shopsList);
+        search = (EditText) findViewById(R.id.search);
 
         sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
 
@@ -54,10 +61,28 @@ public class Shops extends AppCompatActivity {
 
         }
 
-        //Toast.makeText(Shops.this, ShopName[3], Toast.LENGTH_LONG).show();
-
-        ListViewAdapter shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
+        shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
         shopsList.setAdapter(shopsListViewAdapter);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //(Shops.this).shopsListViewAdapter.getFilter().filter(s);
+                //TODO Shops list eka filter karanna one
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 }

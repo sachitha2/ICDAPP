@@ -36,7 +36,7 @@ public class Download extends AppCompatActivity {
 
         createDatabaseAndTables();
 
-        jsonParseStockTable();
+        jsonParseStockAndPriceRangeTable();
         jsonParseItemTable();
         jsonParseShopTable();
 
@@ -133,10 +133,9 @@ public class Download extends AppCompatActivity {
     }
 
     //Downloads Stock and Price Range tables
-    public void jsonParseStockTable(){
+    public void jsonParseStockAndPriceRangeTable(){
 
-        //String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=" + MainActivity.loggedAccount;
-        String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=sam";
+        String url = "http://icd.infinisolutionslk.com/JSONGetVehicleStock.php?uName=" + MainActivity.loggedAccount;
 
         JsonObjectRequest requestDownloadStock = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

@@ -17,9 +17,8 @@ public class ListViewAdapter extends BaseAdapter {
 
     String[] ItemId;
     String[] ItemName;
-    String[] BuyingPrice;
     String[] Amount;
-    String[] Date;
+    String[] RAmount;
     String[] PriceRange;
 
     String[] ShopId;
@@ -30,7 +29,7 @@ public class ListViewAdapter extends BaseAdapter {
     String[] IdNo;
     String[] Credit;
 
-    public ListViewAdapter(Context context, String[] Id, String From, String[] ItemId, String[] ItemName, String[] BuyingPrice, String[] Amount, String[] Date, String[] PriceRange){
+    public ListViewAdapter(Context context, String[] Id, String From, String[] ItemId, String[] ItemName, String[] Amount, String[] RAmount, String[] PriceRange){
 
         this.context = context;
         this.Id = Id;
@@ -38,9 +37,8 @@ public class ListViewAdapter extends BaseAdapter {
 
         this.ItemId = ItemId;
         this.ItemName = ItemName;
-        this.BuyingPrice = BuyingPrice;
         this.Amount = Amount;
-        this.Date = Date;
+        this.RAmount = RAmount;
         this.PriceRange = PriceRange;
 
     }
@@ -90,16 +88,14 @@ public class ListViewAdapter extends BaseAdapter {
 
                 TextView itemId = (TextView)btnView.findViewById(R.id.txtItemId);
                 TextView itemName = (TextView)btnView.findViewById(R.id.txtItemName);
-                TextView buyingPrice = (TextView)btnView.findViewById(R.id.txtBuyingPrice);
                 TextView amount = (TextView)btnView.findViewById(R.id.txtAmount);
-                TextView date = (TextView)btnView.findViewById(R.id.txtDate);
+                TextView rAmount = (TextView)btnView.findViewById(R.id.txtRAmount);
                 TextView priceRange = (TextView)btnView.findViewById(R.id.txtPriceRange);
 
                 itemId.setText(ItemId[position]);
                 itemName.setText(ItemName[position]);
-                buyingPrice.setText(BuyingPrice[position]);
                 amount.setText(Amount[position]);
-                date.setText(Date[position]);
+                rAmount.setText(RAmount[position]);
                 priceRange.setText(PriceRange[position]);
 
                 break;

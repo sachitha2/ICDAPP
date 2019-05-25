@@ -3,6 +3,8 @@ package com.example.icecreamdelivery;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -151,13 +153,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_download_data) {
 
-            Intent intentDownload = new Intent(MainActivity.this, Download.class);
-            startActivity(intentDownload);
+            if(haveNet()){
+
+                Intent intentDownload = new Intent(MainActivity.this, Download.class);
+                startActivity(intentDownload);
+
+            }else if(!haveNet()){
+
+                Toast.makeText(MainActivity.this,"Network connection is not available",Toast.LENGTH_SHORT).show();
+
+            }
 
         } else if (id == R.id.nav_upload_data) {
 
-            Intent intentUpload = new Intent(MainActivity.this, Upload.class);
-            startActivity(intentUpload);
+            if(haveNet()){
+
+                Intent intentUpload = new Intent(MainActivity.this, Upload.class);
+                startActivity(intentUpload);
+
+            }else if(!haveNet()){
+
+                Toast.makeText(MainActivity.this,"Network connection is not available",Toast.LENGTH_SHORT).show();
+
+            }
 
         } else if (id == R.id.nav_settings) {
 
@@ -182,4 +200,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private boolean haveNet(){
+        boolean haveWifi = false;
+        boolean haveMobileData = false;
+        ConnectivityManager connectivityManager =(ConnectivityManager) getSystemService( CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+        for(NetworkInfo info:networkInfos){
+            if(info.getTypeName().equalsIgnoreCase("WIFI")){
+                if(info.isConnected()){
+                    haveWifi  = true;
+                }
+
+            }
+            if(info.getTypeName().equalsIgnoreCase("MOBILE")){
+                if(info.isConnected()){
+                    haveMobileData = true;
+                }
+
+            }
+        }
+        return haveMobileData || haveWifi;
+    }
+
 }

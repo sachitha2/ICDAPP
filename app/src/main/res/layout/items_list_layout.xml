@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="70"
+            android:layout_weight="60"
             android:orientation="vertical">
 
             <TextView
@@ -37,14 +37,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txt03"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|left"
-                android:text="Buying Price :"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/txt04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
-                android:text="Date :"
+                android:text="Remaining Amount :"
                 android:textSize="16sp" />
 
             <TextView
@@ -72,7 +64,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="30"
+            android:layout_weight="40"
             android:orientation="vertical">
 
             <TextView
@@ -94,15 +86,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtBuyingPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start|left"
-                android:text=""
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/txtAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,7 +95,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtDate"
+                android:id="@+id/txtRAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
