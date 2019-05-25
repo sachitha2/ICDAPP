@@ -1,5 +1,6 @@
 package com.example.icecreamdelivery;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,24 +24,32 @@ public class Download extends AppCompatActivity {
 
     SQLiteDatabase sqLiteDatabase;
 
-    private RequestQueue requestQueueForStock, requestQueueForItem, requestQueueForShop;
+    private RequestQueue requestQueueForStock, requestQueueForItem, requestQueueForShop, requestQueueForRoute;
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 
+        progressDialog = new ProgressDialog(Download.this);
+        progressDialog.setTitle("Downloading Data....");
+        progressDialog.setMessage("");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         requestQueueForStock = Volley.newRequestQueue(Download.this);
         requestQueueForItem = Volley.newRequestQueue(Download.this);
         requestQueueForShop = Volley.newRequestQueue(Download.this);
+        requestQueueForRoute = Volley.newRequestQueue(Download.this);
 
         createDatabaseAndTables();
 
         jsonParseStockAndPriceRangeTable();
         jsonParseItemTable();
         jsonParseShopTable();
-
-        //Toast.makeText(Download.this, "Download Complete", Toast.LENGTH_SHORT).show();
+        jsonParseRouteTable();
 
     }
 
@@ -223,7 +232,7 @@ public class Download extends AppCompatActivity {
 
     }
 
-    //Downloads Shop tables
+    //Downloads Shop table
     public void jsonParseShopTable(){
 
         String url = "http://icd.infinisolutionslk.com/jsonGetShops.php";
@@ -242,7 +251,7 @@ public class Download extends AppCompatActivity {
                             for (int k = 0; k < Shop.length(); k++){
 
                                 JSONObject temp02 = Shop.getJSONObject(k);
-                                Log.d("Shop",k+"");
+
                                 sqLiteDatabase.execSQL("INSERT INTO shop (id, name, address, tp, rootId, nic, credit) VALUES (" + temp02.getString("id") +
                                         ", '"+temp02.getString("name")+
                                         "', '"+temp02.getString("address")+
@@ -251,11 +260,8 @@ public class Download extends AppCompatActivity {
                                         ", '"+temp02.getString("idCardN")+
                                         "', "+temp02.getString("credit")+
                                         ");");
-//
-
 
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -268,6 +274,47 @@ public class Download extends AppCompatActivity {
             }
         });
         requestQueueForShop.add(requestDownloadShop);
+
+    }
+
+    //Downloads Route table
+    public void jsonParseRouteTable(){
+
+        String url = "http://icd.infinisolutionslk.com/JSONGetRoutes.php";
+
+        JsonObjectRequest requestDownloadRoute = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            JSONArray Id = response.getJSONArray("id");
+                            JSONArray RouteName = response.getJSONArray("routeName");
+
+
+                            for (int l = 0; l < Id.length(); l++){
+
+                                sqLiteDatabase.execSQL("INSERT INTO route (id, name) VALUES (" + Id.getInt(l) +
+                                        ", '"+RouteName.getString(l)+
+                                        "');");
+
+                            }
+
+                            progressDialog.hide();
+                            Toast.makeText(Download.this, "Download Complete", Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueueForRoute.add(requestDownloadRoute);
 
     }
 
