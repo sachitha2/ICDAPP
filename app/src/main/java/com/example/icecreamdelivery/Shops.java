@@ -18,7 +18,7 @@ public class Shops extends AppCompatActivity implements TextWatcher{
     private ListView shopsList;
     EditText search;
 
-    ListViewAdapter shopsListViewAdapter;
+
 
     //chatson
     String[] name = {"Apple","Sachitha","Man","Ann","Sachitha"};
@@ -53,7 +53,8 @@ public class Shops extends AppCompatActivity implements TextWatcher{
         Root = new String[nRow];
         IdNo = new String[nRow];
         Credit = new String[nRow];
-
+        myList = new ArrayList<>();
+        SingleRowForShops singleRow;
         int i = 0;
         while (c.moveToNext()){
 
@@ -66,48 +67,25 @@ public class Shops extends AppCompatActivity implements TextWatcher{
             IdNo[i] = c.getString(5);
             Credit[i] = c.getFloat(6) + "";
 
+
+
+            singleRow = new SingleRowForShops(c.getString(1),ShopId[i]);
+
+            myList.add(singleRow);
+
+
             i++;
 
         }
 
         search.addTextChangedListener(this);
 
-        myList = new ArrayList<>();
-        SingleRowForShops singleRow;
-
-        for(int z = 0; z < name.length;z++){
-            singleRow = new SingleRowForShops(name[z],age[z]);
-
-            myList.add(singleRow);
-        }
 
         shopsListAdapter = new ShopsListAdapter(this,myList);
 
         shopsList.setAdapter(shopsListAdapter);
 
 
-//        shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
-//        shopsList.setAdapter(shopsListViewAdapter);
-
-//        search.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//                //(Shops.this).shopsListViewAdapter.getFilter().filter(s);
-//                //TODO Shops list eka filter karanna one
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
 
     }
 
