@@ -11,12 +11,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class Shops extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class Shops extends AppCompatActivity implements TextWatcher{
 
     private ListView shopsList;
     EditText search;
 
     ListViewAdapter shopsListViewAdapter;
+
+    //chatson
+    String[] name = {"Apple","Sachitha","Man","Ann","Sachitha"};
+    String[] age = {"10","20","30","40","10"};
+    ArrayList<SingleRowForShops> myList;
+    ShopsListAdapter shopsListAdapter;
+    //chatson
 
     SQLiteDatabase sqLiteShops;
 
@@ -61,28 +70,59 @@ public class Shops extends AppCompatActivity {
 
         }
 
-        shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
-        shopsList.setAdapter(shopsListViewAdapter);
+        search.addTextChangedListener(this);
 
-        search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        myList = new ArrayList<>();
+        SingleRowForShops singleRow;
 
-            }
+        for(int z = 0; z < name.length;z++){
+            singleRow = new SingleRowForShops(name[z],age[z]);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            myList.add(singleRow);
+        }
 
-                //(Shops.this).shopsListViewAdapter.getFilter().filter(s);
-                //TODO Shops list eka filter karanna one
+        shopsListAdapter = new ShopsListAdapter(this,myList);
 
-            }
+        shopsList.setAdapter(shopsListAdapter);
 
-            @Override
-            public void afterTextChanged(Editable s) {
 
-            }
-        });
+//        shopsListViewAdapter = new ListViewAdapter(Shops.this, Id, "Shops", ShopId, ShopName, Address, Contact, Root, IdNo, Credit);
+//        shopsList.setAdapter(shopsListViewAdapter);
+
+//        search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                //(Shops.this).shopsListViewAdapter.getFilter().filter(s);
+//                //TODO Shops list eka filter karanna one
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        this.shopsListAdapter.getFilter().filter(s);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
 
     }
 }
