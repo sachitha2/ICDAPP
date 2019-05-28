@@ -10,19 +10,31 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SelectShop extends AppCompatActivity {
 
     private Spinner item;
     private Spinner price;
     private TextView txtInvoiceId;
+    private Button btnAdd;
+    private EditText edtQuantity;
+    private LinearLayout itemList;
 
     long time;
 
     private String ShopId,ShopName,Address,Contact,Root,SDate,IdNo,Credit;
     private String[] Id, ItemName, Prices;
+
+    JSONObject invoice;
 
     SQLiteDatabase sqLiteSelectShop;
 
@@ -31,11 +43,23 @@ public class SelectShop extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_shop);
 
+        ShopId= getIntent().getStringExtra("ShopId");
+        ShopName= getIntent().getStringExtra("ShopName");
+
+        setTitle(ShopName);
+
         txtInvoiceId = (TextView) findViewById(R.id.txtInvoiceId);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
+        edtQuantity = (EditText) findViewById(R.id.edtQuantity);
+        itemList = (LinearLayout) findViewById(R.id.itemList);
+
         time = System.currentTimeMillis();
+
         SharedPreferences sharedPreferencesSS = getSharedPreferences("loginInfo", Login.MODE_PRIVATE);
         int vehicleId = sharedPreferencesSS.getInt("vehicleId", -1);
         txtInvoiceId.setText(vehicleId + "-" + time);
+
+        invoice = new JSONObject();
 
         //-------------- Items and Prices Spinners------------------------------------------------------------------------------------
         item = (Spinner) findViewById(R.id.item);
@@ -94,17 +118,63 @@ public class SelectShop extends AppCompatActivity {
         });
         //-------------- End of Items and Prices Spinners------------------------------------------------------------------------------------
 
-        ShopId= getIntent().getStringExtra("ShopId");
-        ShopName= getIntent().getStringExtra("ShopName");
-        Address= getIntent().getStringExtra("Address");
-        Contact= getIntent().getStringExtra("Contact");
-        Root= getIntent().getStringExtra("Root");
-        SDate= getIntent().getStringExtra("SDate");
-        IdNo= getIntent().getStringExtra("IdNo");
-        Credit= getIntent().getStringExtra("Credit");
-
-        setTitle(ShopName);
-
     }
 
+    public void onAddClick(View view) {
+
+        Log.d("Sachitha","1");
+
+        JSONArray temp = new JSONArray();
+        temp.put(item.getSelectedItem()+"");
+        temp.put(price.getSelectedItem()+"");
+        temp.put(edtQuantity.getText()+"");
+
+        try {
+            Log.d("Sachitha","2");
+            invoice.put(Id[item.getSelectedItemPosition()]+"",temp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("Sachitha", invoice.toString());
+
+        Log.d("Sachitha","3");
+        LinearLayout linearLayout = new LinearLayout(SelectShop.this);
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView textView1 = new TextView(this);
+        textView1.setText(item.getSelectedItem()+"");
+
+        TextView textView2 = new TextView(this);
+        textView2.setText(price.getSelectedItem()+"");
+
+        TextView textView3 = new TextView(this);
+        textView3.setText(edtQuantity.getText()+"");
+
+//        int tot = Integer.valueOf(price.getSelectedItem()+"") * Integer.parseInt(edtQuantity.getText().toString());
+
+//        TextView textView4 = new TextView(this);
+//        textView4.setText(tot+"");
+        linearLayout.addView(textView1);
+        linearLayout.addView(textView2);
+        linearLayout.addView(textView3);
+
+        itemList.addView(linearLayout);
+
+        Log.d("Sachitha","6");
+
+    }
 }
+
+//TODO Add button eke functions tika
+//TODO complete invoice button eke functions tika
+
+//        ShopId= getIntent().getStringExtra("ShopId");
+//        ShopName= getIntent().getStringExtra("ShopName");
+//        Address= getIntent().getStringExtra("Address");
+//        Contact= getIntent().getStringExtra("Contact");
+//        Root= getIntent().getStringExtra("Root");
+//        SDate= getIntent().getStringExtra("SDate");
+//        IdNo= getIntent().getStringExtra("IdNo");
+//        Credit= getIntent().getStringExtra("Credit");

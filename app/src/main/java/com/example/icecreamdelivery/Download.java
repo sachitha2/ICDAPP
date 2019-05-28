@@ -137,8 +137,6 @@ public class Download extends AppCompatActivity {
                 "shopId int(6) NOT NULL," +
                 "Total int(10) NOT NULL );");
 
-
-
     }
 
     //Downloads Stock and Price Range tables
@@ -212,7 +210,7 @@ public class Download extends AppCompatActivity {
 
                             for (int i = 0; i < Id.length(); i++){
 
-                                sqLiteDatabase.execSQL("INSERT INTO item (itemId, name) VALUES (" + Id.getString(i) +
+                                sqLiteDatabase.execSQL("INSERT INTO item (itemId, name) VALUES (" + Id.getInt(i) +
                                         ", '"+ItemName.getString(i)+
                                         "');");
 
