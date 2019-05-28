@@ -1,6 +1,7 @@
 package com.example.icecreamdelivery;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,7 +26,7 @@ public class SelectShop extends AppCompatActivity {
     private Spinner item;
     private Spinner price;
     private TextView txtInvoiceId;
-    private Button btnAdd;
+    private Button btnAdd,btnCompleteI;
     private EditText edtQuantity;
     private LinearLayout itemList;
 
@@ -52,6 +53,22 @@ public class SelectShop extends AppCompatActivity {
         btnAdd = (Button) findViewById(R.id.btnAdd);
         edtQuantity = (EditText) findViewById(R.id.edtQuantity);
         itemList = (LinearLayout) findViewById(R.id.itemList);
+
+        btnCompleteI = findViewById(R.id.btnCompleteI);
+
+
+        btnCompleteI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Goto Complete invoice activiy
+
+                Intent intent = new Intent(SelectShop.this, CompleteInvoice.class);
+//                String message = mMessageEditText.getText().toString();
+
+//                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+            }
+        });
 
         time = System.currentTimeMillis();
 
