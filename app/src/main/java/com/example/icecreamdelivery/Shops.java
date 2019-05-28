@@ -69,7 +69,7 @@ public class Shops extends AppCompatActivity implements TextWatcher{
 
 
 
-            singleRow = new SingleRowForShops(c.getString(1),ShopId[i]);
+            singleRow = new SingleRowForShops(c.getString(1),ShopId[i], c.getString(2),"2","3","4","5");
 
             myList.add(singleRow);
 

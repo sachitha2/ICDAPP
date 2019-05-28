@@ -2,7 +2,18 @@ package com.example.icecreamdelivery;
 
 public class SingleRowForShops {
     String name;
-    String age;
+    String id;
+
+    public SingleRowForShops(String name, String id, String address, String contact, String route, String idCardN, String credit) {
+        this.name = name;
+        this.id = id;
+        this.address = address;
+        this.Contact = contact;
+        this.route = route;
+        this.idCardN = idCardN;
+        this.credit = credit;
+    }
+
     //By Chatson
     String address;
     String Contact;
@@ -12,9 +23,9 @@ public class SingleRowForShops {
     //By Chatson
 
 
-    public SingleRowForShops(String name,String age) {
+    public SingleRowForShops(String name,String id) {
         this.name = name;
-        this.age = age;
+        this.id = id;
     }
 
     public String getName() {
@@ -22,15 +33,15 @@ public class SingleRowForShops {
     }
 
     public  String getAge(){
-        return  age;
+        return  id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public  void  setAge(String age){
-        this.age = age;
+    public  void  setAge(String id){
+        this.id = id;
     }
 
 
