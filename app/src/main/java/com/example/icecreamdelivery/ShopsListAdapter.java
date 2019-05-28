@@ -36,7 +36,7 @@ public class ShopsListAdapter extends BaseAdapter implements Filterable {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View row = inflater.inflate(R.layout.shops_list_layout,null);
@@ -75,16 +75,16 @@ public class ShopsListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("Credit", Credit[position]);
 
 
-
-                intentSelectShop.putExtra("ShopId", 100);
-                intentSelectShop.putExtra("ShopName", "Sachitha Stores");
+                //TODO Config putExtra variables here
+                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
+                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
                 intentSelectShop.putExtra("Address", "No");
                 intentSelectShop.putExtra("Contact", "0715591137");
                 intentSelectShop.putExtra("Root","10");
                 intentSelectShop.putExtra("IdNo", "983142044v");
                 intentSelectShop.putExtra("Credit", "300");
                 c.startActivity(intentSelectShop);
-                Toast.makeText(c, "Shop NAme" + " was clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
