@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CompleteInvoice"></activity>
         <activity
             android:name=".Upload"
-            android:label="Upload Data"/>
+            android:label="Upload Data" />
         <activity
             android:name=".Download"
             android:label="Download Data" />
