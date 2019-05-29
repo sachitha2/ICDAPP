@@ -9,5 +9,7 @@ public class SalesItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_item);
+        setTitle("Sales - Items");
+
     }
 }
