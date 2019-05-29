@@ -194,6 +194,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intentLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             MainActivity.this.startActivity(intentLogin);
 
+        }else if(id == R.id.nav_sales){
+            Intent intentSettings = new Intent(MainActivity.this, SalesItem.class);
+            startActivity(intentSettings);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

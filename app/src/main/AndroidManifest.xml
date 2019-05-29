@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CompleteInvoice"></activity>
+        <activity android:name=".SalesItem"></activity>
+        <activity android:name=".CompleteInvoice" />
         <activity
             android:name=".Upload"
             android:label="Upload Data" />

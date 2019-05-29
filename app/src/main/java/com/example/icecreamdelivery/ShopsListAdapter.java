@@ -78,11 +78,11 @@ public class ShopsListAdapter extends BaseAdapter implements Filterable {
                 //TODO Config putExtra variables here
                 intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
                 intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Address", "No");
-                intentSelectShop.putExtra("Contact", "0715591137");
-                intentSelectShop.putExtra("Root","10");
-                intentSelectShop.putExtra("IdNo", "983142044v");
-                intentSelectShop.putExtra("Credit", "300");
+                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
+                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
+                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
+                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
+                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
                 c.startActivity(intentSelectShop);
                 Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
             }
