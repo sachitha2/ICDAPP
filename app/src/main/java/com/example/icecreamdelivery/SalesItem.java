@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class SalesItem extends AppCompatActivity {
     private ListView itemList;
     EditText search;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +20,6 @@ public class SalesItem extends AppCompatActivity {
 
         itemList = findViewById(R.id.salesItemList);
         search = findViewById(R.id.searchSalesItems);
-
 
 
 

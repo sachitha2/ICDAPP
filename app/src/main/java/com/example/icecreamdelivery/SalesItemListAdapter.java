@@ -14,7 +14,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class SalesItemListAdapter extends BaseAdapter implements Filterable {
-    //TODO  FROM HERE
     Context c;
     ArrayList<SingleRowForShops> originalArray,tmpArray;
     ///filter
@@ -41,22 +40,22 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
         View row = inflater.inflate(R.layout.shops_list_layout,null);
 
-        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
-        TextView textId = row.findViewById(R.id.txtShopId);
-        TextView textAddress = row.findViewById(R.id.txtAddress);
-        TextView textContact = row.findViewById(R.id.txtContact);
-        TextView textRoute = row.findViewById(R.id.txtRoot);
-        TextView textIdCard = row.findViewById(R.id.txtIdNo);
-        TextView textCredit = row.findViewById(R.id.txtCredit);
-
-        textView.setText(originalArray.get(position).getName());
-        textId.setText(originalArray.get(position).getAge());
-
-//        textAddress.setText(originalArray.get(position).getAddress());
-        textContact.setText("071-5591137");
-        textRoute.setText("Galgamuwa");
-        textIdCard.setText("983142044v");
-        textCredit.setText("250");
+//        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
+//        TextView textId = row.findViewById(R.id.txtShopId);
+//        TextView textAddress = row.findViewById(R.id.txtAddress);
+//        TextView textContact = row.findViewById(R.id.txtContact);
+//        TextView textRoute = row.findViewById(R.id.txtRoot);
+//        TextView textIdCard = row.findViewById(R.id.txtIdNo);
+//        TextView textCredit = row.findViewById(R.id.txtCredit);
+//
+//        textView.setText(originalArray.get(position).getName());
+//        textId.setText(originalArray.get(position).getAge());
+//
+////        textAddress.setText(originalArray.get(position).getAddress());
+//        textContact.setText("071-5591137");
+//        textRoute.setText("Galgamuwa");
+//        textIdCard.setText("983142044v");
+//        textCredit.setText("250");
 
 
 
@@ -64,7 +63,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View v) {
 
-                Intent intentSelectShop = new Intent(c, SelectShop.class);
+//                Intent intentSelectShop = new Intent(c, SelectShop.class);
 
 //                intentSelectShop.putExtra("ShopId", ShopId[position]);
 //                intentSelectShop.putExtra("ShopName", ShopName[position]);
@@ -76,14 +75,14 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
 
                 //TODO Config putExtra variables here
-                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
-                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
-                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
-                c.startActivity(intentSelectShop);
+//                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
+//                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
+//                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
+//                c.startActivity(intentSelectShop);
                 Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
