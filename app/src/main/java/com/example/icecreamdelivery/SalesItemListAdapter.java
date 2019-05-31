@@ -40,22 +40,22 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
         View row = inflater.inflate(R.layout.shops_list_layout,null);
 
-//        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
-//        TextView textId = row.findViewById(R.id.txtShopId);
-//        TextView textAddress = row.findViewById(R.id.txtAddress);
-//        TextView textContact = row.findViewById(R.id.txtContact);
-//        TextView textRoute = row.findViewById(R.id.txtRoot);
-//        TextView textIdCard = row.findViewById(R.id.txtIdNo);
-//        TextView textCredit = row.findViewById(R.id.txtCredit);
+        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
+        TextView textId = row.findViewById(R.id.txtShopId);
+        TextView textAddress = row.findViewById(R.id.txtAddress);
+        TextView textContact = row.findViewById(R.id.txtContact);
+        TextView textRoute = row.findViewById(R.id.txtRoot);
+        TextView textIdCard = row.findViewById(R.id.txtIdNo);
+        TextView textCredit = row.findViewById(R.id.txtCredit);
 //
-//        textView.setText(originalArray.get(position).getName());
-//        textId.setText(originalArray.get(position).getAge());
+        textView.setText(originalArray.get(position).getName());
+        textId.setText(originalArray.get(position).getAge());
 //
-////        textAddress.setText(originalArray.get(position).getAddress());
-//        textContact.setText("071-5591137");
-//        textRoute.setText("Galgamuwa");
-//        textIdCard.setText("983142044v");
-//        textCredit.setText("250");
+        textAddress.setText(originalArray.get(position).getAddress());
+        textContact.setText("071-5591137");
+        textRoute.setText("Galgamuwa");
+        textIdCard.setText("983142044v");
+        textCredit.setText("250");
 
 
 
