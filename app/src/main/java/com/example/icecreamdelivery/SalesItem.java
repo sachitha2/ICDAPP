@@ -18,7 +18,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
     private ListView shopsList;
 
     //chatson
-    ArrayList<SingleRowForShops> myList;
+    ArrayList<SingleRowForSalesItems> myList;
     SalesItemListAdapter shopsListAdapter;
     //chatson
 
@@ -54,7 +54,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         IdNo = new String[nRow];
         Credit = new String[nRow];
         myList = new ArrayList<>();
-        SingleRowForShops singleRow;
+        SingleRowForSalesItems singleRow;
         int i = 0;
         while (c.moveToNext()){
 
@@ -64,7 +64,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
 
 
 
-            singleRow = new SingleRowForShops(c.getString(0),c.getString(1));
+            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1));
 
             myList.add(singleRow);
 

@@ -15,14 +15,14 @@ import java.util.ArrayList;
 
 public class SalesItemListAdapter extends BaseAdapter implements Filterable {
     Context c;
-    ArrayList<SingleRowForShops> originalArray,tmpArray;
+    ArrayList<SingleRowForSalesItems> originalArray,tmpArray;
     ///filter
     SalesItemListAdapter.CustomFilter cs;
     ///filter
 
 
 
-    public  SalesItemListAdapter(Context c, ArrayList<SingleRowForShops> originalArray){
+    public  SalesItemListAdapter(Context c, ArrayList<SingleRowForSalesItems> originalArray){
         this.c = c;
         this.originalArray = originalArray;
         this.tmpArray = originalArray;
@@ -45,7 +45,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
           TextView txtRAmount = row.findViewById(R.id.txtRAmount);
           TextView txtTotalCash = row.findViewById(R.id.txtTotalCash);
 
-          txtItemName.setText("Sachitha");
+          txtItemName.setText(originalArray.get(position).getName());
           txtAmount.setText("5000");
           txtRAmount.setText("2500");
           txtTotalCash.setText("35,000");
@@ -111,11 +111,11 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
                 constraint = constraint.toString().toUpperCase();
 
 
-                ArrayList<SingleRowForShops> filters = new ArrayList<>();
+                ArrayList<SingleRowForSalesItems> filters = new ArrayList<>();
 
                 for (int i = 0; i < tmpArray.size(); i++) {
                     if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForShops singleRow = new SingleRowForShops(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
+                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
 
 
 
@@ -126,8 +126,8 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
                     }
 
-                    if (tmpArray.get(i).getAge().toUpperCase().contains(constraint)) {
-                        SingleRowForShops singleRow = new SingleRowForShops(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
+                    if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
+                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
 
 
 
@@ -153,7 +153,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            originalArray  = (ArrayList<SingleRowForShops>)results.values;
+            originalArray  = (ArrayList<SingleRowForSalesItems>)results.values;
             notifyDataSetChanged();
         }
     }
