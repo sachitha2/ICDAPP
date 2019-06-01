@@ -41,7 +41,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
 
         sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
 
-        Cursor c =sqLiteShops.rawQuery("SELECT * FROM shop LIMIT 10;",null);
+        Cursor c =sqLiteShops.rawQuery("SELECT * FROM item ;",null);
 
         int nRow = c.getCount();
 
@@ -61,15 +61,10 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
             Id[i] = "" + i;
             ShopId[i] = c.getString(0);
             ShopName[i] = c.getString(1);
-            Address[i] = c.getString(2);
-            Contact[i] = c.getString(3);
-            Root[i] = c.getString(4);
-            IdNo[i] = c.getString(5);
-            Credit[i] = c.getFloat(6) + "";
 
 
 
-            singleRow = new SingleRowForShops(c.getString(1),ShopId[i], c.getString(2),"2","3","4","5");
+            singleRow = new SingleRowForShops(c.getString(0),c.getString(1));
 
             myList.add(singleRow);
 
