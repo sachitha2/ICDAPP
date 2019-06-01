@@ -21,8 +21,6 @@ public class Shops extends AppCompatActivity implements TextWatcher{
 
 
     //chatson
-    String[] name = {"Apple","Sachitha","Man","Ann","Sachitha"};
-    String[] age = {"10","20","30","40","10"};
     ArrayList<SingleRowForShops> myList;
     ShopsListAdapter shopsListAdapter;
     //chatson

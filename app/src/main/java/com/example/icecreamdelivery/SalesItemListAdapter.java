@@ -38,25 +38,27 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View row = inflater.inflate(R.layout.shops_list_layout,null);
+        View row = inflater.inflate(R.layout.item_list_in_sales,null);
 
-        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
-        TextView textId = row.findViewById(R.id.txtShopId);
-        TextView textAddress = row.findViewById(R.id.txtAddress);
-        TextView textContact = row.findViewById(R.id.txtContact);
-        TextView textRoute = row.findViewById(R.id.txtRoot);
-        TextView textIdCard = row.findViewById(R.id.txtIdNo);
-        TextView textCredit = row.findViewById(R.id.txtCredit);
-//
-        textView.setText(originalArray.get(position).getName());
-        textId.setText(originalArray.get(position).getAge());
-//
-        textAddress.setText(originalArray.get(position).getAddress());
-        textContact.setText("071-5591137");
-        textRoute.setText("Galgamuwa");
-        textIdCard.setText("983142044v");
-        textCredit.setText("250");
+          TextView txtItemName = row.findViewById(R.id.txtItemName);
 
+//        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
+//        TextView textId = row.findViewById(R.id.txtShopId);
+//        TextView textAddress = row.findViewById(R.id.txtAddress);
+//        TextView textContact = row.findViewById(R.id.txtContact);
+//        TextView textRoute = row.findViewById(R.id.txtRoot);
+//        TextView textIdCard = row.findViewById(R.id.txtIdNo);
+//        TextView textCredit = row.findViewById(R.id.txtCredit);
+//
+//        textView.setText(originalArray.get(position).getName());
+//        textId.setText(originalArray.get(position).getAge());
+////
+//        textAddress.setText(originalArray.get(position).getAddress());
+//        textContact.setText("071-5591137");
+//        textRoute.setText("Galgamuwa");
+//        textIdCard.setText("983142044v");
+//        textCredit.setText("250");
+          txtItemName.setText("Sachitha");
 
 
         row.setOnClickListener(new View.OnClickListener() {
