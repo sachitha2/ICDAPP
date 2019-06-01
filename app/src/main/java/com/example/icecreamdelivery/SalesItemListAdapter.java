@@ -75,7 +75,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
 //                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
 //                c.startActivity(intentSelectShop);
-                  Toast.makeText(c, "Item name" + " was clicked", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(c, originalArray.get(position).getName() + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -126,17 +126,17 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
                     }
 
-                    if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
-
-
-
-                        filters.add(singleRow);
-
-
-
-
-                    }
+//                    if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
+//                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
+//
+//
+//
+//                        filters.add(singleRow);
+//
+//
+//
+//
+//                    }
 
                 }
                 results.count = filters.size();
