@@ -15,12 +15,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="15dp"
             android:ems="10"
             android:hint="Search...."
             android:inputType="textPersonName" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grand Total 2500"
+            android:textSize="40dp"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"/>
 
         <ListView
             android:id="@+id/salesItemList"

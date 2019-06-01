@@ -8,6 +8,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:paddingLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -35,6 +36,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
                 android:text="Remaining Amount :"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|left"
+                android:text="Total Cash"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -65,6 +74,15 @@
 
             <TextView
                 android:id="@+id/txtRAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|left"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtTotalCash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"

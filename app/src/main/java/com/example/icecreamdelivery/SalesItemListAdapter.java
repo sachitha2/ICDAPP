@@ -41,24 +41,14 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
         View row = inflater.inflate(R.layout.item_list_in_sales,null);
 
           TextView txtItemName = row.findViewById(R.id.txtItemName);
+          TextView txtAmount = row.findViewById(R.id.txtAmount);
+          TextView txtRAmount = row.findViewById(R.id.txtRAmount);
+          TextView txtTotalCash = row.findViewById(R.id.txtTotalCash);
 
-//        TextView textView =(TextView)row.findViewById(R.id.txtShopName);
-//        TextView textId = row.findViewById(R.id.txtShopId);
-//        TextView textAddress = row.findViewById(R.id.txtAddress);
-//        TextView textContact = row.findViewById(R.id.txtContact);
-//        TextView textRoute = row.findViewById(R.id.txtRoot);
-//        TextView textIdCard = row.findViewById(R.id.txtIdNo);
-//        TextView textCredit = row.findViewById(R.id.txtCredit);
-//
-//        textView.setText(originalArray.get(position).getName());
-//        textId.setText(originalArray.get(position).getAge());
-////
-//        textAddress.setText(originalArray.get(position).getAddress());
-//        textContact.setText("071-5591137");
-//        textRoute.setText("Galgamuwa");
-//        textIdCard.setText("983142044v");
-//        textCredit.setText("250");
           txtItemName.setText("Sachitha");
+          txtAmount.setText("5000");
+          txtRAmount.setText("2500");
+          txtTotalCash.setText("35,000");
 
 
         row.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +75,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
 //                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
 //                c.startActivity(intentSelectShop);
-                  Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(c, "Item name" + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
 

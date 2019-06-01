@@ -35,15 +35,47 @@ public class Upload extends AppCompatActivity {
         String data = "sachitha hirushannn";
 
         JSONObject json = new JSONObject();
-        JSONObject manJson = new JSONObject();
-        JSONArray myArr = new JSONArray();
-        myArr.put(1);
-        manJson.put("name", "emil");
-        manJson.put("username", "emil111");
-        manJson.put("age", "111");
-        json.put("man",manJson);
-        myArr.put(manJson);
-        json.put("arr",myArr);
+        JSONArray invoiceArray = new JSONArray();
+        JSONArray invoiceItems = new JSONArray();
+        JSONObject invoiceItemData = new JSONObject();
+
+        JSONObject invoiceData = new JSONObject();
+
+        invoiceData.put("invoiceNumber","3-25800");
+        invoiceData.put("credit","450");
+        invoiceData.put("total","900");
+        invoiceData.put("shopId","258");
+        invoiceData.put("cash","450");
+        invoiceData.put("date","2018-10-10");
+
+        invoiceArray.put(invoiceData);
+        invoiceArray.put(invoiceData);
+        invoiceArray.put(invoiceData);
+        invoiceArray.put(invoiceData);
+
+        ///////////////////////invoice item part
+
+        invoiceItemData.put("qty","25");
+        invoiceItemData.put("price","25.00");
+        invoiceItemData.put("itemId","47");
+
+
+        invoiceItems.put(invoiceItemData);
+        invoiceItems.put(invoiceItemData);
+        invoiceItems.put(invoiceItemData);
+        invoiceItems.put(invoiceItemData);
+
+        json.put("invoice",invoiceArray);
+        json.put("invoiceItem",invoiceItems);
+//        JSONObject manJson = new JSONObject();
+//        JSONArray myArr = new JSONArray();
+//        myArr.put(1);
+//        manJson.put("name", "emil");
+//        manJson.put("username", "emil111");
+//        manJson.put("age", "111");
+//        json.put("man",manJson);
+//        myArr.put(manJson);
+//        json.put("arr",myArr);
 
         Log.d("JSON","json"+json);
 
