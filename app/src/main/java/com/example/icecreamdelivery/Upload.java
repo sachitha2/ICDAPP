@@ -67,15 +67,6 @@ public class Upload extends AppCompatActivity {
 
         json.put("invoice",invoiceArray);
         json.put("invoiceItem",invoiceItems);
-//        JSONObject manJson = new JSONObject();
-//        JSONArray myArr = new JSONArray();
-//        myArr.put(1);
-//        manJson.put("name", "emil");
-//        manJson.put("username", "emil111");
-//        manJson.put("age", "111");
-//        json.put("man",manJson);
-//        myArr.put(manJson);
-//        json.put("arr",myArr);
 
         Log.d("JSON","json"+json);
 
