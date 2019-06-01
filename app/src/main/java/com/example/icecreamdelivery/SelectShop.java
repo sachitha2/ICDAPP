@@ -156,18 +156,40 @@ public class SelectShop extends AppCompatActivity {
         Log.d("Sachitha", invoice.toString());
 
         Log.d("Sachitha","3");
+
+        //new code
+        Log.d("Sachitha","3");
         LinearLayout linearLayout = new LinearLayout(SelectShop.this);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
         TextView textView1 = new TextView(this);
+        textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
         textView1.setText(item.getSelectedItem()+"");
 
         TextView textView2 = new TextView(this);
+        textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.25f));
         textView2.setText(price.getSelectedItem()+"");
 
         TextView textView3 = new TextView(this);
+        textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.25f));
         textView3.setText(edtQuantity.getText()+"");
+
+        //new code
+
+
+//        LinearLayout linearLayout = new LinearLayout(SelectShop.this);
+//        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+//
+//        TextView textView1 = new TextView(this);
+//        textView1.setText(item.getSelectedItem()+"");
+//
+//        TextView textView2 = new TextView(this);
+//        textView2.setText(price.getSelectedItem()+"");
+//
+//        TextView textView3 = new TextView(this);
+//        textView3.setText(edtQuantity.getText()+"");
 
 //        int tot = Integer.valueOf(price.getSelectedItem()+"") * Integer.parseInt(edtQuantity.getText().toString());
 

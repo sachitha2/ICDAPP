@@ -74,7 +74,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("Credit", Credit[position]);
 
 
-                //TODO Config putExtra variables here
+                  //TODO Config putExtra variables here
 //                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
 //                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
 //                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
@@ -83,7 +83,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
 //                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
 //                c.startActivity(intentSelectShop);
-                Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
