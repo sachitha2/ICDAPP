@@ -67,32 +67,47 @@ public class CompleteInvoice extends AppCompatActivity {
 
 
 
-        BILL = "                   XXXX MART    \n"
-                + "                   XX.AA.BB.CC.     \n " +
-                "                 NO 25 ABC ABCDE    \n" +
-                "                  XXXXX YYYYYY      \n" +
-                "                   MMM 590019091      \n";
-        BILL = BILL
-                + "-----------------------------------------------\n";
+        BILL =
+                "-----------------------------------------------\n"+
+                "                 Island Dairies                \n"+
+                "-----------------------------------------------\n"+
+                "  Address                    \n"+
+                "       E.M.S.K Gunarathna              \n" +
+                "       Track 06 angamuwa                \n" +
+                "       Rajanganaya               \n\n" +
+                "  Telephone:               \n" +
+                "       071-5888479,0711012888               \n\n\n"
+               +"-----------------------------------------------\n";
 
 
-        BILL = BILL + String.format("%1$-10s %2$10s %3$13s %4$10s", "Item", "Qty", "Rate", "Totel");
+        BILL = BILL + String.format("%1$-10s %2$10s %3$13s %4$10s", "Item", "Qty", "Rate", "Total");
         BILL = BILL + "\n";
         BILL = BILL
-                + "-----------------------------------------------";
-        BILL = BILL + "\n " + String.format("%1$-10s %2$10s %3$11s %4$10s", "item", "5", "10", "50.00");
-        BILL = BILL + "\n " + String.format("%1$-10s %2$10s %3$11s %4$10s", "item-002", "10", "5", "50.00");
-        BILL = BILL + "\n " + String.format("%1$-10s %2$10s %3$11s %4$10s", "item-003", "20", "10", "200.00");
-        BILL = BILL + "\n " + String.format("%1$-10s %2$10s %3$11s %4$10s", "item-004", "50", "10", "500.00");
+                + "-----------------------------------------------\n";
+        BILL = BILL + "  Testing String \n";
+        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+        BILL = BILL + "  Testing String \n";
+        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+        BILL = BILL + "  Testing String \n";
+        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+        BILL = BILL + "  Testing String \n";
+        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
 
         BILL = BILL
                 + "\n-----------------------------------------------";
-        BILL = BILL + "\n\n ";
+        BILL = BILL + "\n\n";
 
         BILL = BILL + "                   Total Qty:" + "      " + "85" + "\n";
         BILL = BILL + "                   Total Value:" + "     " + "700.00" + "\n";
+        BILL = BILL + "                   Previous credit:" + "     " + "700.00" + "\n";
+        BILL = BILL + "                   cash:" + "     " + "700.00" + "\n";
+        BILL = BILL + "                   Credit Forward:" + "     " + "700.00" + "\n";
 
         BILL = BILL
+                + "-----------------------------------------------\n"
+                + "  Solution by\n"
+                + "  www.infinisolutionslk.com\n" +
+                "  077-1466460/071-5591137"
                 + "-----------------------------------------------\n";
         BILL = BILL + "\n\n ";
 
