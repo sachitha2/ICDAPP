@@ -24,7 +24,11 @@ public class CompleteInvoice extends AppCompatActivity {
     public  String mac;
     public  String val;
     public EditText editText;
+    public EditText getCash;
     public String BILL = "";
+
+    String cash;
+
     private static final String TAG = "bluetooth1";
 
 
@@ -59,7 +63,7 @@ public class CompleteInvoice extends AppCompatActivity {
         address = mac;
         print = findViewById(R.id.btnPrint);
 
-
+        getCash = findViewById(R.id.cash);
 
 
         setTitle("Print Bill");
@@ -67,49 +71,7 @@ public class CompleteInvoice extends AppCompatActivity {
 
 
 
-        BILL =
-                "-----------------------------------------------\n"+
-                "                 Island Dairies                \n"+
-                "-----------------------------------------------\n"+
-                "  Address                    \n"+
-                "       E.M.S.K Gunarathna              \n" +
-                "       Track 06 angamuwa                \n" +
-                "       Rajanganaya               \n\n" +
-                "  Telephone:               \n" +
-                "       071-5888479,0711012888               \n\n\n"
-               +"-----------------------------------------------\n";
 
-
-        BILL = BILL + String.format("%1$-10s %2$10s %3$13s %4$10s", "Item", "Qty", "Rate", "Total");
-        BILL = BILL + "\n";
-        BILL = BILL
-                + "-----------------------------------------------\n";
-        BILL = BILL + "  Testing String \n";
-        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-        BILL = BILL + "  Testing String \n";
-        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-        BILL = BILL + "  Testing String \n";
-        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-        BILL = BILL + "  Testing String \n";
-        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-
-        BILL = BILL
-                + "\n-----------------------------------------------";
-        BILL = BILL + "\n\n";
-
-        BILL = BILL + "                   Total Qty:" + "      " + "85" + "\n";
-        BILL = BILL + "                   Total Value:" + "     " + "700.00" + "\n";
-        BILL = BILL + "                   Previous credit:" + "     " + "700.00" + "\n";
-        BILL = BILL + "                   cash:" + "     " + "700.00" + "\n";
-        BILL = BILL + "                   Credit Forward:" + "     " + "700.00" + "\n";
-
-        BILL = BILL
-                + "-----------------------------------------------\n"
-                + "  Solution by\n"
-                + "  www.infinisolutionslk.com\n" +
-                "  077-1466460/071-5591137"
-                + "-----------------------------------------------\n";
-        BILL = BILL + "\n\n ";
 
 
 
@@ -121,13 +83,71 @@ public class CompleteInvoice extends AppCompatActivity {
         print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Print Buton","Print Button clicked");
+                cash = getCash.getText().toString();
+                Log.d("Print Buton","Print Button clicked"+cash);
+
+                //Make bill
+                BILL =
+                        "-----------------------------------------------\n"+
+                                "                 Island Dairies                \n"+
+                                "-----------------------------------------------\n"+
+                                "  Address                    \n"+
+                                "       E.M.S.K Gunarathna              \n" +
+                                "       Track 06 angamuwa                \n" +
+                                "       Rajanganaya               \n\n" +
+                                "  Telephone:               \n" +
+                                "       071-5888479,0711012888               \n"
+                                +"-----------------------------------------------\n"
+                                +"Invoice Number : \n"
+                                +"Driver         : \n"
+                                +"Date and Time  : \n"
+                                +"Shop Name      : \n"
+                                +"Shop Id        : \n"
+                                +"-----------------------------------------------\n";
 
 
+                BILL = BILL + String.format("%1$-10s %2$10s %3$13s %4$10s", "Item", "Qty", "Rate", "Total");
+                BILL = BILL + "\n";
+                BILL = BILL
+                        + "-----------------------------------------------\n";
+                BILL = BILL + "  Testing String \n";
+                BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+//        BILL = BILL + "  Testing String \n";
+//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+//        BILL = BILL + "  Testing String \n";
+//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+//        BILL = BILL + "  Testing String \n";
+//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+
+                BILL = BILL
+                        + "\n-----------------------------------------------";
+                BILL = BILL + "\n\n";
+
+                BILL = BILL + "  Total Qty       :" + "      " + "85" + "\n";
+                BILL = BILL + "  Total Value     :" + "     " + "700.00" + "\n";
+                BILL = BILL + "  Previous credit :" + "     " + "700.00" + "\n";
+                BILL = BILL + "  Cash            :" + "     " + cash + "\n";
+                BILL = BILL + "  Credit Forward  :" + "     " + "700.00" + "\n";
+
+                BILL = BILL
+                        + "-----------------------------------------------\n"
+                        + "  Solution by\n"
+                        + "  www.infinisolutionslk.com\n" +
+                        "  077-1466460/071-5591137\n"
+                        + "-----------------------------------------------\n";
+                BILL = BILL + "\n\n ";
 
 
-                checkBTState();
-                sendData(BILL);
+                //Make bill
+
+                if(btAdapter == null){
+                    Log.d("print bt ","Blutooth device not found");
+                }else{
+                    checkBTState();
+                    sendData(BILL);
+                }
+
+
             }
         });
 

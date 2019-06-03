@@ -39,31 +39,17 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
 
         shopsList = itemList;
 
-        sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
+        sqLiteShops = openOrCreateDatabase("ICD", SalesItem.MODE_PRIVATE,null);
 
         Cursor c =sqLiteShops.rawQuery("SELECT * FROM item ;",null);
 
         int nRow = c.getCount();
 
-        Id = new String[nRow];
-        ShopId = new String[nRow];
-        ShopName = new String[nRow];
-        Address = new String[nRow];
-        Contact = new String[nRow];
-        Root = new String[nRow];
-        IdNo = new String[nRow];
-        Credit = new String[nRow];
+
         myList = new ArrayList<>();
         SingleRowForSalesItems singleRow;
         int i = 0;
         while (c.moveToNext()){
-
-            Id[i] = "" + i;
-            ShopId[i] = c.getString(0);
-            ShopName[i] = c.getString(1);
-
-
-
             singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1));
 
             myList.add(singleRow);
