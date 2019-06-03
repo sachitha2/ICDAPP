@@ -30,6 +30,9 @@ public class SelectShop extends AppCompatActivity {
     private EditText edtQuantity;
     private LinearLayout itemList;
 
+    int itemCount = 0;
+
+
     long time;
 
     private String ShopId,ShopName,Address,Contact,Root,SDate,IdNo,Credit;
@@ -55,28 +58,33 @@ public class SelectShop extends AppCompatActivity {
         itemList = (LinearLayout) findViewById(R.id.itemList);
 
         btnCompleteI = findViewById(R.id.btnCompleteI);
+        time = System.currentTimeMillis();
 
-
+        SharedPreferences sharedPreferencesSS = getSharedPreferences("loginInfo", Login.MODE_PRIVATE);
+        final int vehicleId = sharedPreferencesSS.getInt("vehicleId", -1);
+        txtInvoiceId.setText(vehicleId + "-" + time);
+        invoice = new JSONObject();
         btnCompleteI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Goto Complete invoice activiy
 
+
+
+
                 Intent intent = new Intent(SelectShop.this, CompleteInvoice.class);
 //                String message = mMessageEditText.getText().toString();
 
-//                intent.putExtra(EXTRA_MESSAGE, message);
+                intent.putExtra("ShopId", ShopId);
+                intent.putExtra("ShopName", ShopName);
+                intent.putExtra("invoiceNumber", vehicleId+"-"+time);
                 startActivity(intent);
             }
         });
 
-        time = System.currentTimeMillis();
 
-        SharedPreferences sharedPreferencesSS = getSharedPreferences("loginInfo", Login.MODE_PRIVATE);
-        int vehicleId = sharedPreferencesSS.getInt("vehicleId", -1);
-        txtInvoiceId.setText(vehicleId + "-" + time);
 
-        invoice = new JSONObject();
+
 
         //-------------- Items and Prices Spinners------------------------------------------------------------------------------------
         item = (Spinner) findViewById(R.id.item);
@@ -139,26 +147,28 @@ public class SelectShop extends AppCompatActivity {
 
     public void onAddClick(View view) {
 
-        Log.d("Sachitha","1");
+//        Log.d("Sachitha","1");
 
         JSONArray temp = new JSONArray();
         temp.put(item.getSelectedItem()+"");
         temp.put(price.getSelectedItem()+"");
         temp.put(edtQuantity.getText()+"");
+        temp.put(Id[item.getSelectedItemPosition()]);
 
         try {
-            Log.d("Sachitha","2");
-            invoice.put(Id[item.getSelectedItemPosition()]+"",temp);
+//            Log.d("Sachitha","2");
+            invoice.put(itemCount+"",temp);//Id[item.getSelectedItemPosition()]
+            itemCount++;
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Log.d("Sachitha", invoice.toString());
 
-        Log.d("Sachitha","3");
+//        Log.d("Sachitha","3");
 
         //new code
-        Log.d("Sachitha","3");
+//        Log.d("Sachitha","3");
         LinearLayout linearLayout = new LinearLayout(SelectShop.this);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -201,7 +211,7 @@ public class SelectShop extends AppCompatActivity {
 
         itemList.addView(linearLayout);
 
-        Log.d("Sachitha","6");
+//        Log.d("Sachitha","6");
 
     }
 }

@@ -17,6 +17,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 public class CompleteInvoice extends AppCompatActivity {
@@ -28,7 +30,11 @@ public class CompleteInvoice extends AppCompatActivity {
     public String BILL = "";
 
     String cash;
-
+    String invoiceN;
+    String shopId;
+    String ShopName;
+    String DriverName;
+    Date currentTime = Calendar.getInstance().getTime();
     private static final String TAG = "bluetooth1";
 
 
@@ -64,7 +70,9 @@ public class CompleteInvoice extends AppCompatActivity {
         print = findViewById(R.id.btnPrint);
 
         getCash = findViewById(R.id.cash);
-
+        shopId = getIntent().getStringExtra("ShopId");
+        ShopName = getIntent().getStringExtra("ShopName");
+        invoiceN = getIntent().getStringExtra("invoiceNumber");
 
         setTitle("Print Bill");
         ///get MAC
@@ -88,7 +96,7 @@ public class CompleteInvoice extends AppCompatActivity {
 
                 //Make bill
                 BILL =
-                        "-----------------------------------------------\n"+
+                                "-----------------------------------------------\n"+
                                 "                 Island Dairies                \n"+
                                 "-----------------------------------------------\n"+
                                 "  Address                    \n"+
@@ -98,11 +106,12 @@ public class CompleteInvoice extends AppCompatActivity {
                                 "  Telephone:               \n" +
                                 "       071-5888479,0711012888               \n"
                                 +"-----------------------------------------------\n"
-                                +"Invoice Number : \n"
-                                +"Driver         : \n"
-                                +"Date and Time  : \n"
-                                +"Shop Name      : \n"
-                                +"Shop Id        : \n"
+                                +"Invoice Number : "+invoiceN+"\n"
+                                +"Driver         : "+DriverName+"\n"
+
+                                +"Shop Name      : "+ShopName+"\n"
+                                +"Shop Id        : "+shopId+"\n"
+                                +"Date : "+currentTime+"\n"
                                 +"-----------------------------------------------\n";
 
 
@@ -112,12 +121,7 @@ public class CompleteInvoice extends AppCompatActivity {
                         + "-----------------------------------------------\n";
                 BILL = BILL + "  Testing String \n";
                 BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-//        BILL = BILL + "  Testing String \n";
-//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-//        BILL = BILL + "  Testing String \n";
-//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
-//        BILL = BILL + "  Testing String \n";
-//        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+                //        BILL = BILL + "  Testing String \n";
 
                 BILL = BILL
                         + "\n-----------------------------------------------";
