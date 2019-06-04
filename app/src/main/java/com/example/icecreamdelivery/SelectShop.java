@@ -113,6 +113,7 @@ public class SelectShop extends AppCompatActivity {
                 intent.putExtra("ShopName", ShopName);
                 intent.putExtra("invoiceNumber", vehicleId+"-"+time);
                 intent.putExtra("json",invoice.toString());
+                intent.putExtra("itemTotla",fullTotal+"");
                 startActivity(intent);
             }
         });

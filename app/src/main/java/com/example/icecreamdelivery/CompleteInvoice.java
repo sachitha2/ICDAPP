@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -36,10 +38,13 @@ public class CompleteInvoice extends AppCompatActivity {
 
     String cash;
     String json;
+    String itemTotla;
     String invoiceN;
     String shopId;
     String ShopName;
     String DriverName;
+    float preCredit;
+    float totalWithCredit = 0;
     Date currentTime = Calendar.getInstance().getTime();
     private static final String TAG = "bluetooth1";
 
@@ -70,7 +75,7 @@ public class CompleteInvoice extends AppCompatActivity {
     // MAC-address of Bluetooth module (you must edit this line)
     private static String address;//02:2F:01:1E:CA:40
 
-
+    SQLiteDatabase sqLiteSelectShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +83,7 @@ public class CompleteInvoice extends AppCompatActivity {
         setContentView(R.layout.activity_complete_invoice);
         mac = "02:2F:01:1E:CA:40";
         address = mac;
-        checkBTState();
+        sqLiteSelectShop = openOrCreateDatabase("ICD", CompleteInvoice.MODE_PRIVATE,null);
 
 
         print = findViewById(R.id.btnPrint);
@@ -88,8 +93,7 @@ public class CompleteInvoice extends AppCompatActivity {
         ShopName = getIntent().getStringExtra("ShopName");
         invoiceN = getIntent().getStringExtra("invoiceNumber");
         json = getIntent().getStringExtra("json");
-
-
+        itemTotla = getIntent().getStringExtra("itemTotla");
 
 
         Log.d("json",json);
@@ -103,11 +107,18 @@ public class CompleteInvoice extends AppCompatActivity {
 
 
 
+        //get shop credit
+        Cursor cForItems =sqLiteSelectShop.rawQuery("SELECT * FROM shop where id = '"+shopId+"' ;",null);
+        cForItems.moveToNext();
 
+        preCredit =Integer.valueOf(cForItems.getString(6));
 
-        itemTotal.setText(1000+"");
-        previousCredit.setText(250+"");
-        totalCredit.setText(350+"");
+        //get shop credit
+
+        itemTotal.setText(itemTotla+"");
+        previousCredit.setText(preCredit+"");
+        totalWithCredit = preCredit + 140;
+        totalCredit.setText((totalWithCredit) +"");
 
         ///get MAC
 
@@ -121,7 +132,7 @@ public class CompleteInvoice extends AppCompatActivity {
         Toast.makeText(CompleteInvoice.this,"data "+mac,Toast.LENGTH_SHORT).show();
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-
+        checkBTState();
         print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,9 +205,9 @@ public class CompleteInvoice extends AppCompatActivity {
 
                 BILL = BILL + "  Total Qty       :" + "     " + nItems + "\n";
                 BILL = BILL + "  Total Value     :" + "     " + fullTotal + "\n";
-                BILL = BILL + "  Previous credit :" + "     " + "700.00" + "\n";
+                BILL = BILL + "  Previous credit :" + "     " + preCredit + "\n";
                 BILL = BILL + "  Cash            :" + "     " + cash + "\n";
-                BILL = BILL + "  Credit Forward  :" + "     " + "700.00" + "\n";
+                BILL = BILL + "  Credit Forward  :" + "     " + "00.00" + "\n";
 
                 BILL = BILL
                         + "-----------------------------------------------\n"
