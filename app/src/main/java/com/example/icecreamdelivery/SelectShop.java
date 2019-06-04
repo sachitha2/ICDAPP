@@ -46,7 +46,7 @@ public class SelectShop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_shop);
-
+        sqLiteSelectShop = openOrCreateDatabase("ICD", SelectShop.MODE_PRIVATE,null);
         ShopId= getIntent().getStringExtra("ShopId");
         ShopName= getIntent().getStringExtra("ShopName");
 
@@ -69,7 +69,11 @@ public class SelectShop extends AppCompatActivity {
             public void onClick(View v) {
                 //Goto Complete invoice activiy
 
+                ///save data in table
+                sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (14, '12587', 250, 10,2,2502,25,'2019-12-12',0);");
 
+
+                ///save data in table
 
 
                 Intent intent = new Intent(SelectShop.this, CompleteInvoice.class);
@@ -90,7 +94,7 @@ public class SelectShop extends AppCompatActivity {
         item = (Spinner) findViewById(R.id.item);
         price = (Spinner) findViewById(R.id.price);
 
-        sqLiteSelectShop = openOrCreateDatabase("ICD", SelectShop.MODE_PRIVATE,null);
+
 
         Cursor cForItems =sqLiteSelectShop.rawQuery("SELECT * FROM item ;",null);
 
@@ -172,18 +176,25 @@ public class SelectShop extends AppCompatActivity {
         LinearLayout linearLayout = new LinearLayout(SelectShop.this);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setPadding(0,20,0,20);
+
 
         TextView textView1 = new TextView(this);
-        textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+        textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
         textView1.setText(item.getSelectedItem()+"");
 
         TextView textView2 = new TextView(this);
-        textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.25f));
+        textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
         textView2.setText(price.getSelectedItem()+"");
 
         TextView textView3 = new TextView(this);
-        textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.25f));
+        textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
         textView3.setText(edtQuantity.getText()+"");
+
+        TextView textView4 = new TextView(this);
+        textView4.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
+        textView4.setText("Total");
+
 
         //new code
 
@@ -208,6 +219,8 @@ public class SelectShop extends AppCompatActivity {
         linearLayout.addView(textView1);
         linearLayout.addView(textView2);
         linearLayout.addView(textView3);
+        linearLayout.addView(textView4);
+
 
         itemList.addView(linearLayout);
 
