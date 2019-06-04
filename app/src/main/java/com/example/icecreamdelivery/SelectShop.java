@@ -33,6 +33,17 @@ public class SelectShop extends AppCompatActivity {
     int itemCount = 0;
 
 
+
+    //bill invoice data
+    String qty;
+    String iPrice;
+
+
+    //bill invoice data
+
+
+
+
     long time;
 
     private String ShopId,ShopName,Address,Contact,Root,SDate,IdNo,Credit;
@@ -70,11 +81,20 @@ public class SelectShop extends AppCompatActivity {
                 //Goto Complete invoice activiy
 
                 ///save data in table
+
+
                 sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (14, '12587', 250, 10,2,2502,25,'2019-12-12',0);");
+//                sqLiteSelectShop.execSQL("");
 
 
                 ///save data in table
 
+//                try {
+//
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
 
                 Intent intent = new Intent(SelectShop.this, CompleteInvoice.class);
 //                String message = mMessageEditText.getText().toString();
@@ -121,6 +141,8 @@ public class SelectShop extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 Cursor cForPrices =sqLiteSelectShop.rawQuery("SELECT * FROM price_range WHERE itemId = "+Id[item.getSelectedItemPosition()]+" ;",null);
+
+
 
                 int nRowPrices = cForPrices.getCount();
 
@@ -193,7 +215,10 @@ public class SelectShop extends AppCompatActivity {
 
         TextView textView4 = new TextView(this);
         textView4.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-        textView4.setText("Total");
+
+        qty = edtQuantity.getText()+"";
+
+        textView4.setText(( Integer.valueOf(qty) * 5 )+"");
 
 
         //new code

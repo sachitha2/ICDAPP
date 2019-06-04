@@ -111,7 +111,7 @@ public class Download extends AppCompatActivity {
 
 
         //Drop Table if Exist
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS invoice;");
+//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS invoice;");
 
         // Creating Invoice Table
         sqLiteDatabase.execSQL("CREATE TABLE IF  NOT EXISTS invoice (" +
@@ -128,7 +128,7 @@ public class Download extends AppCompatActivity {
 
 
         //Drop Table if Exist
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS deal;");
+//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS deal;");
 
         // Creating Deal Table
         sqLiteDatabase.execSQL("CREATE TABLE IF  NOT EXISTS deal (" +

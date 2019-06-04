@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -37,7 +38,12 @@ public class CompleteInvoice extends AppCompatActivity {
     Date currentTime = Calendar.getInstance().getTime();
     private static final String TAG = "bluetooth1";
 
-
+    //TextViews
+    TextView txtInvoiceId;
+    TextView itemTotal;
+    TextView previousCredit;
+    TextView totalCredit;
+    //TextViews
 
     ///Font Helpers
 
@@ -75,6 +81,20 @@ public class CompleteInvoice extends AppCompatActivity {
         invoiceN = getIntent().getStringExtra("invoiceNumber");
 
         setTitle("Print Bill");
+        txtInvoiceId = findViewById(R.id.txtInvoiceId);
+        itemTotal = findViewById(R.id.itemTotal);
+        previousCredit = findViewById(R.id.previousCredit);
+        totalCredit = findViewById(R.id.totalCredit);
+        txtInvoiceId.setText(invoiceN);
+        
+
+
+
+
+        itemTotal.setText(1000+"");
+        previousCredit.setText(250+"");
+        totalCredit.setText(350+"");
+
         ///get MAC
 
 
