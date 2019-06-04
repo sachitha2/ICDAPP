@@ -16,7 +16,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
     private ListView shopsList;
     EditText search;
 
-
+    String shopName;
 
     //chatson
     ArrayList<SingleRowForAllInvoices> myList;
@@ -57,9 +57,19 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
             ShopName[i] = c.getString(1);
             Address[i] = c.getString(2);
 
+            //Looking for shop name
+            shopName = "sam shop";
+            Cursor shopNameFind =sqLiteShops.rawQuery("SELECT * FROM shop where id = "+c.getString(1)+";",null);
+
+            shopNameFind.moveToNext();
+            shopName = shopNameFind.getString(1);
+
+            //Looking for shop name
 
 
-            singleRow = new SingleRowForAllInvoices(c.getString(1),ShopId[i], c.getString(2),"2","3","4","5");
+
+
+            singleRow = new SingleRowForAllInvoices(shopName, c.getString(0), c.getString(2),"2","3","4","5");
 
             myList.add(singleRow);
 

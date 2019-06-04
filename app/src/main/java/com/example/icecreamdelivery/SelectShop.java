@@ -84,7 +84,7 @@ public class SelectShop extends AppCompatActivity {
 
 
                 sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (14, '12587', 250, 10,2,2502,25,'2019-12-12',0);");
-                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total) VALUES ('hellooo', 1, 250);");
+                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", 250);");
 //                sqLiteSelectShop.execSQL("");
 
 
