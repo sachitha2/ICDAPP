@@ -89,7 +89,7 @@ public class SelectShop extends AppCompatActivity {
                 for(int x = 0;x < invoice.length();x++){
                     try {
                         JSONArray tmpJson = invoice.getJSONArray(""+x+"");
-                        sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (100, '"+vehicleId+"-"+time+"',20 , 10,2,2502,25,'2019-12-12',0);");
+                        sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (100, '"+vehicleId+"-"+time+"',"+tmpJson.getString(3)+" , "+tmpJson.getString(2)+","+tmpJson.getString(1)+",2502,25,'2019-12-12',0);");
                         Log.d("json arr", "onClick: "+tmpJson);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -98,7 +98,7 @@ public class SelectShop extends AppCompatActivity {
                 }
 
 
-                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total, credit, cash) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", "+fullTotal+",250,550);");
+                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total, credit, cash) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", "+fullTotal+",0,0);");
                 Log.d("Reading json object", "onClick: "+invoice);
                 Log.d("Reading json object L", "onClick: length of json object"+invoice.length());
 //                sqLiteSelectShop.execSQL("");

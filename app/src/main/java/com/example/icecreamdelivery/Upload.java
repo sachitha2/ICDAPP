@@ -54,9 +54,10 @@ public class Upload extends AppCompatActivity {
         JSONObject json = new JSONObject();
         JSONArray invoiceArray = new JSONArray();
         JSONArray invoiceItems = new JSONArray();
-        JSONObject invoiceItemData = new JSONObject();
 
-        JSONObject invoiceData = new JSONObject();
+
+
+
 
 
         Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal ;",null);
@@ -67,21 +68,37 @@ public class Upload extends AppCompatActivity {
 
         int i=0;
         while (cForDeals.moveToNext()){
-
+            JSONObject invoiceData = new JSONObject();
             invoiceData.put("i",cForDeals.getString(0));//invoice
             invoiceData.put("c",cForDeals.getString(3));//credit
             invoiceData.put("t",cForDeals.getString(2));//total
             invoiceData.put("s",cForDeals.getString(1));//shop id
             invoiceData.put("cash",cForDeals.getString(4));//cash
             invoiceData.put("d","2018-10-10");//date
+            Log.d("invoice", "jsonParseStockAndPriceRangeTable: "+invoiceData);
             invoiceArray.put(invoiceData);
 
-            Cursor cForInvoiceData = sqLiteDatabase.rawQuery("SELECT * FROM invoice ;",null);
-                   cForInvoiceData.moveToNext();
-                   invoiceItemData.put("qty","25");
-                   invoiceItemData.put("p","25.00");
-                   invoiceItemData.put("iId","47");
-                   invoiceItems.put(invoiceItemData);
+            Cursor cForInvoiceData = sqLiteDatabase.rawQuery("SELECT * FROM invoice where dealId = '"+cForDeals.getString(0)+"' ;",null);
+                    JSONArray oneInvoice = new JSONArray();
+
+                   while(cForInvoiceData.moveToNext()){
+
+                       JSONObject invoiceItemData = new JSONObject();
+                       invoiceItemData.put("qty",cForInvoiceData.getString(3));
+                       invoiceItemData.put("p",cForInvoiceData.getString(4));
+                       invoiceItemData.put("iId",cForInvoiceData.getString(2));
+
+                       Log.d("invoiceData",cForInvoiceData.getString(3));
+
+                       Log.d("invoiceN", "jsonParseStockAndPriceRangeTable: "+invoiceItemData);
+                       oneInvoice.put(invoiceItemData);
+//                       invoiceItemData.remove("qty");
+//                       invoiceItemData.remove("p");
+//                       invoiceItemData.remove("iId");
+
+                   }
+                    Log.d("invoiceN", "jsonParseStockAndPriceRangeTable: "+oneInvoice);
+                    invoiceItems.put(oneInvoice);
 
 
             if(i == 50){
