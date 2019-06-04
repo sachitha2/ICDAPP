@@ -85,9 +85,6 @@ public class SelectBuletoothMAC extends AppCompatActivity {
 
 
                             Intent intent =new  Intent(SelectBuletoothMAC.this,MainActivity.class);
-                            intent.putExtra("MAC", String.valueOf(mac) );
-                            intent.putExtra("email","chatson@chatson.com");
-
                             startActivity(intent);
                         }
                     }

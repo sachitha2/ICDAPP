@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -82,7 +83,11 @@ public class CompleteInvoice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_invoice);
         mac = "02:2F:01:1E:CA:40";
-        address = mac;
+        SharedPreferences sharedPreferencesSS = getSharedPreferences("prefs", Login.MODE_PRIVATE);
+        final String MAC = sharedPreferencesSS.getString("MAC", "sam");
+        Log.d("MAC",MAC);
+
+        address = MAC;
         sqLiteSelectShop = openOrCreateDatabase("ICD", CompleteInvoice.MODE_PRIVATE,null);
 
 
