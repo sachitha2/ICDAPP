@@ -39,15 +39,13 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View row = inflater.inflate(R.layout.shops_list_layout,null);
+        View row = inflater.inflate(R.layout.all_invoices_list_layout,null);
 
         TextView textView =(TextView)row.findViewById(R.id.txtShopName);
         TextView textId = row.findViewById(R.id.txtShopId);
         TextView textAddress = row.findViewById(R.id.txtAddress);
         TextView textContact = row.findViewById(R.id.txtContact);
         TextView textRoute = row.findViewById(R.id.txtRoot);
-        TextView textIdCard = row.findViewById(R.id.txtIdNo);
-        TextView textCredit = row.findViewById(R.id.txtCredit);
 
         textView.setText(originalArray.get(position).getName());
         textId.setText(originalArray.get(position).getAge());
@@ -55,8 +53,6 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 //        textAddress.setText(originalArray.get(position).getAddress());
         textContact.setText("071-5591137");
         textRoute.setText("Galgamuwa");
-        textIdCard.setText("983142044v");
-        textCredit.setText("250");
 
 
 
@@ -76,15 +72,15 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 
 
                 //TODO Config putExtra variables here
-                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
-                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
-                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
-                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
-                c.startActivity(intentSelectShop);
-                Toast.makeText(c, "Shop name" + " was clicked", Toast.LENGTH_SHORT).show();
+//                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
+//                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
+//                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
+//                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
+//                c.startActivity(intentSelectShop);
+                Toast.makeText(c, "Invoice " + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
 

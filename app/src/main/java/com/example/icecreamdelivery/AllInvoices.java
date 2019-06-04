@@ -35,7 +35,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
         sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
 
-        Cursor c =sqLiteShops.rawQuery("SELECT * FROM shop;",null);
+        Cursor c =sqLiteShops.rawQuery("SELECT * FROM deal;",null);
 
         int nRow = c.getCount();
 
@@ -56,10 +56,6 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
             ShopId[i] = c.getString(0);
             ShopName[i] = c.getString(1);
             Address[i] = c.getString(2);
-            Contact[i] = c.getString(3);
-            Root[i] = c.getString(4);
-            IdNo[i] = c.getString(5);
-            Credit[i] = c.getFloat(6) + "";
 
 
 
