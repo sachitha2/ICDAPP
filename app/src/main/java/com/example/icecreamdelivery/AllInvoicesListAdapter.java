@@ -45,11 +45,13 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
         TextView textId = row.findViewById(R.id.txtInvoiceId);
         TextView shopId = row.findViewById(R.id.txtShopId);
         TextView total = row.findViewById(R.id.txtTotal);
+        TextView qty = row.findViewById(R.id.txtQty);
 
         textView.setText(originalArray.get(position).getName());
         textId.setText(originalArray.get(position).getId());
         shopId.setText(originalArray.get(position).getShopId());
         total.setText(originalArray.get(position).getTotal());
+        qty.setText(originalArray.get(position).getQty());
 
 //        textAddress.setText(originalArray.get(position).getAddress());
 //        textContact.setText("071-5591137");
@@ -121,7 +123,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 
                 for (int i = 0; i < tmpArray.size(); i++) {
                     if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForAllInvoices singleRow = new SingleRowForAllInvoices(tmpArray.get(i).getName(),tmpArray.get(i).getId(),tmpArray.get(i).getShopId(),tmpArray.get(i).getTotal());
+                        SingleRowForAllInvoices singleRow = new SingleRowForAllInvoices(tmpArray.get(i).getName(),tmpArray.get(i).getId(),tmpArray.get(i).getShopId(),tmpArray.get(i).getTotal(),tmpArray.get(i).getQty());
 
 
 

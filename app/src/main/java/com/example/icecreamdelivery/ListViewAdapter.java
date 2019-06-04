@@ -108,7 +108,7 @@ public class ListViewAdapter extends BaseAdapter {
                 TextView shopName = (TextView)btnView.findViewById(R.id.txtShopName);
                 TextView address = (TextView)btnView.findViewById(R.id.txtInvoiceId);
                 TextView contact = (TextView)btnView.findViewById(R.id.txtTotal);
-                TextView root = (TextView)btnView.findViewById(R.id.txtRoot);
+                TextView root = (TextView)btnView.findViewById(R.id.txtQty);
                 TextView idNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView credit = (TextView)btnView.findViewById(R.id.txtCredit);
 
@@ -146,7 +146,7 @@ public class ListViewAdapter extends BaseAdapter {
                 TextView RshopName = (TextView)btnView.findViewById(R.id.txtShopName);
                 TextView Raddress = (TextView)btnView.findViewById(R.id.txtInvoiceId);
                 TextView Rcontact = (TextView)btnView.findViewById(R.id.txtTotal);
-                TextView Rroot = (TextView)btnView.findViewById(R.id.txtRoot);
+                TextView Rroot = (TextView)btnView.findViewById(R.id.txtQty);
                 TextView RidNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView Rcredit = (TextView)btnView.findViewById(R.id.txtCredit);
 

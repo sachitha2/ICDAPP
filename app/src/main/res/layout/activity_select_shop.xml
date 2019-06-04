@@ -158,7 +158,15 @@
             android:background="#D8D8D8"
             android:orientation="vertical"
             android:padding="5dp"/>
-
+        <TextView
+            android:id="@+id/total"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Total"
+            />
         <Button
                 android:id="@+id/btnCompleteI"
                 android:layout_width="wrap_content"

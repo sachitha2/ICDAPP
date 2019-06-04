@@ -45,7 +45,7 @@ public class ShopsListAdapter extends BaseAdapter implements Filterable {
         TextView textId = row.findViewById(R.id.txtInvoiceId);
         TextView textAddress = row.findViewById(R.id.txtInvoiceId);
         TextView textContact = row.findViewById(R.id.txtTotal);
-        TextView textRoute = row.findViewById(R.id.txtRoot);
+        TextView textRoute = row.findViewById(R.id.txtQty);
         TextView textIdCard = row.findViewById(R.id.txtIdNo);
         TextView textCredit = row.findViewById(R.id.txtCredit);
 

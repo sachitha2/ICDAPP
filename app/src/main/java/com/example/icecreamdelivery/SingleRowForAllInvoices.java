@@ -5,6 +5,17 @@ public class SingleRowForAllInvoices {
     String id;
     String shopId;
 
+    public String getQty() {
+        return qty;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
+    }
+
+    String qty;
+
+
     public String getTotal() {
         return total;
     }
@@ -42,11 +53,12 @@ public class SingleRowForAllInvoices {
         this.shopId = shopId;
     }
 
-    public SingleRowForAllInvoices(String name, String id, String shopId,String total) {
+    public SingleRowForAllInvoices(String name, String id, String shopId,String total,String qty) {
         this.name = name;
         this.id = id;
         this.shopId = shopId;
         this.total = total;
+        this.qty = qty;
     }
 
     public String getName() {

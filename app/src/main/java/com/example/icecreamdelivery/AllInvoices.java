@@ -58,8 +58,11 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
             Address[i] = c.getString(2);
 
             //Looking for shop name
-            shopName = "sam shop";
             Cursor shopNameFind =sqLiteShops.rawQuery("SELECT * FROM shop where id = "+c.getString(1)+";",null);
+
+            Cursor invoiceQty =sqLiteShops.rawQuery("SELECT * FROM invoice where dealId = '"+c.getString(0)+"';",null);
+            int nRowInvoiceQty = invoiceQty.getCount();
+
 
             shopNameFind.moveToNext();
             shopName = shopNameFind.getString(1);
@@ -69,7 +72,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
 
 
-            singleRow = new SingleRowForAllInvoices(shopName, c.getString(0), c.getString(1),c.getString(2));
+            singleRow = new SingleRowForAllInvoices(shopName, c.getString(0), c.getString(1),c.getString(2),nRowInvoiceQty+"");
 
             myList.add(singleRow);
 

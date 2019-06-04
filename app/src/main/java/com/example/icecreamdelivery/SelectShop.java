@@ -28,6 +28,8 @@ public class SelectShop extends AppCompatActivity {
     private Button btnAdd,btnCompleteI;
     private EditText edtQuantity;
     private LinearLayout itemList;
+    private TextView total;
+    public  float fullTotal;
 
     int itemCount = 0;
 
@@ -63,6 +65,7 @@ public class SelectShop extends AppCompatActivity {
         setTitle(ShopName);
 
         txtInvoiceId = (TextView) findViewById(R.id.txtInvoiceId);
+        total = findViewById(R.id.total);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         edtQuantity = (EditText) findViewById(R.id.edtQuantity);
         itemList = (LinearLayout) findViewById(R.id.itemList);
@@ -80,21 +83,28 @@ public class SelectShop extends AppCompatActivity {
                 //Goto Complete invoice activiy
 
                 ///save data in table
+                String itemId;
+                String amount;
+
+                for(int x = 0;x < invoice.length();x++){
+                    try {
+                        JSONArray tmpJson = invoice.getJSONArray(""+x+"");
+                        sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (100, '"+vehicleId+"-"+time+"',20 , 10,2,2502,25,'2019-12-12',0);");
+                        Log.d("json arr", "onClick: "+tmpJson);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
 
 
-                sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (14, '12587', 250, 10,2,2502,25,'2019-12-12',0);");
-                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", 250);");
+                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", "+fullTotal+");");
+                Log.d("Reading json object", "onClick: "+invoice);
+                Log.d("Reading json object L", "onClick: length of json object"+invoice.length());
 //                sqLiteSelectShop.execSQL("");
 
 
                 ///save data in table
-
-//                try {
-//
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
 
                 Intent intent = new Intent(SelectShop.this, CompleteInvoice.class);
 //                String message = mMessageEditText.getText().toString();
@@ -175,15 +185,21 @@ public class SelectShop extends AppCompatActivity {
 
 //        Log.d("Sachitha","1");
 
+        if (price.getSelectedItem() == null) {
+            Log.d("Sachitha","Price is null");
+        } else {
+
+
+
         JSONArray temp = new JSONArray();
-        temp.put(item.getSelectedItem()+"");
-        temp.put(price.getSelectedItem()+"");
-        temp.put(edtQuantity.getText()+"");
+        temp.put(item.getSelectedItem() + "");
+        temp.put(price.getSelectedItem() + "");
+        temp.put(edtQuantity.getText() + "");
         temp.put(Id[item.getSelectedItemPosition()]);
 
         try {
 //            Log.d("Sachitha","2");
-            invoice.put(itemCount+"",temp);//Id[item.getSelectedItemPosition()]
+            invoice.put(itemCount + "", temp);//Id[item.getSelectedItemPosition()]
             itemCount++;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -198,28 +214,31 @@ public class SelectShop extends AppCompatActivity {
         LinearLayout linearLayout = new LinearLayout(SelectShop.this);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.setPadding(0,20,0,20);
+        linearLayout.setPadding(0, 20, 0, 20);
 
 
         TextView textView1 = new TextView(this);
         textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
-        textView1.setText(item.getSelectedItem()+"");
+        textView1.setText(item.getSelectedItem() + "");
 
         TextView textView2 = new TextView(this);
         textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-        textView2.setText(price.getSelectedItem()+"");
+        textView2.setText(price.getSelectedItem() + "");
 
         TextView textView3 = new TextView(this);
         textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-        textView3.setText(edtQuantity.getText()+"");
+        textView3.setText(edtQuantity.getText() + "");
 
         TextView textView4 = new TextView(this);
         textView4.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
 
-        qty = edtQuantity.getText()+"";
+        qty = edtQuantity.getText() + "";
+        float sPrice = Float.parseFloat(price.getSelectedItem().toString());
+        textView4.setText((Integer.valueOf(qty) * sPrice) + "");
 
-        textView4.setText(( Integer.valueOf(qty) * 5 )+"");
+        fullTotal +=  (Integer.valueOf(qty) * sPrice);
 
+        total.setText("Total \n"+fullTotal + "");
 
         //new code
 
@@ -250,7 +269,7 @@ public class SelectShop extends AppCompatActivity {
         itemList.addView(linearLayout);
 
 //        Log.d("Sachitha","6");
-
+    }
     }
 }
 
