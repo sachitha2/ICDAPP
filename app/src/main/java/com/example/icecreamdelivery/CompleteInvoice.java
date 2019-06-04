@@ -86,7 +86,7 @@ public class CompleteInvoice extends AppCompatActivity {
         previousCredit = findViewById(R.id.previousCredit);
         totalCredit = findViewById(R.id.totalCredit);
         txtInvoiceId.setText(invoiceN);
-        
+
 
 
 
