@@ -15,6 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
@@ -31,6 +35,7 @@ public class CompleteInvoice extends AppCompatActivity {
     public String BILL = "";
 
     String cash;
+    String json;
     String invoiceN;
     String shopId;
     String ShopName;
@@ -73,12 +78,21 @@ public class CompleteInvoice extends AppCompatActivity {
         setContentView(R.layout.activity_complete_invoice);
         mac = "02:2F:01:1E:CA:40";
         address = mac;
+        checkBTState();
+
+
         print = findViewById(R.id.btnPrint);
 
         getCash = findViewById(R.id.cash);
         shopId = getIntent().getStringExtra("ShopId");
         ShopName = getIntent().getStringExtra("ShopName");
         invoiceN = getIntent().getStringExtra("invoiceNumber");
+        json = getIntent().getStringExtra("json");
+
+
+
+
+        Log.d("json",json);
 
         setTitle("Print Bill");
         txtInvoiceId = findViewById(R.id.txtInvoiceId);
@@ -112,6 +126,11 @@ public class CompleteInvoice extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cash = getCash.getText().toString();
+
+                if(cash.length() == 0){
+                        Log.d("Print","cash is empty");
+                }else{
+
                 Log.d("Print Buton","Print Button clicked"+cash);
 
                 //Make bill
@@ -139,16 +158,42 @@ public class CompleteInvoice extends AppCompatActivity {
                 BILL = BILL + "\n";
                 BILL = BILL
                         + "-----------------------------------------------\n";
-                BILL = BILL + "  Testing String \n";
-                BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", "5", "10", "50.00")+"\n";
+                String itemName,qty,rate ;
+                double total;
+                float sPrice ;
+                int nItems = 0;
+                float fullTotal = 0;
+                try {
+                    JSONObject obj = new JSONObject(json);
+                    nItems = obj.length();
+                    for(int x = 0;x < obj.length();x++){
+
+                        JSONArray tmpJson = obj.getJSONArray(""+x+"");
+                        itemName = tmpJson.getString(0);
+                        rate = tmpJson.getString(1);
+                        qty = tmpJson.getString(2);
+//                        total = ();
+                          sPrice = Float.parseFloat(rate);
+                          total = sPrice * Integer.valueOf(qty);
+                          fullTotal += total;
+                        BILL = BILL + "  "+itemName+" \n";
+                        BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", qty, rate, total+"")+"\n";
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
                 //        BILL = BILL + "  Testing String \n";
 
                 BILL = BILL
                         + "\n-----------------------------------------------";
                 BILL = BILL + "\n\n";
 
-                BILL = BILL + "  Total Qty       :" + "      " + "85" + "\n";
-                BILL = BILL + "  Total Value     :" + "     " + "700.00" + "\n";
+                BILL = BILL + "  Total Qty       :" + "     " + nItems + "\n";
+                BILL = BILL + "  Total Value     :" + "     " + fullTotal + "\n";
                 BILL = BILL + "  Previous credit :" + "     " + "700.00" + "\n";
                 BILL = BILL + "  Cash            :" + "     " + cash + "\n";
                 BILL = BILL + "  Credit Forward  :" + "     " + "700.00" + "\n";
@@ -167,12 +212,12 @@ public class CompleteInvoice extends AppCompatActivity {
                 if(btAdapter == null){
                     Log.d("print bt ","Blutooth device not found");
                 }else{
-                    checkBTState();
+
                     sendData(BILL);
                 }
 
 
-            }
+            }}
         });
 
 
