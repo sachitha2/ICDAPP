@@ -19,7 +19,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
 
     //chatson
-    ArrayList<SingleRowForShops> myList;
+    ArrayList<SingleRowForAllInvoices> myList;
     AllInvoicesListAdapter shopsListAdapter;
     //chatson
 
@@ -48,7 +48,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
         IdNo = new String[nRow];
         Credit = new String[nRow];
         myList = new ArrayList<>();
-        SingleRowForShops singleRow;
+        SingleRowForAllInvoices singleRow;
         int i = 0;
         while (c.moveToNext()){
 
@@ -59,7 +59,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
 
 
-            singleRow = new SingleRowForShops(c.getString(1),ShopId[i], c.getString(2),"2","3","4","5");
+            singleRow = new SingleRowForAllInvoices(c.getString(1),ShopId[i], c.getString(2),"2","3","4","5");
 
             myList.add(singleRow);
 

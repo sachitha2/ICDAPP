@@ -16,14 +16,14 @@ package com.example.icecreamdelivery;
 public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 
     Context c;
-    ArrayList<SingleRowForShops> originalArray,tmpArray;
+    ArrayList<SingleRowForAllInvoices> originalArray,tmpArray;
     ///filter
     CustomFilter cs;
     ///filter
 
 
 
-    public  AllInvoicesListAdapter(Context c, ArrayList<SingleRowForShops> originalArray){
+    public  AllInvoicesListAdapter(Context c, ArrayList<SingleRowForAllInvoices> originalArray){
         this.c = c;
         this.originalArray = originalArray;
         this.tmpArray = originalArray;
@@ -116,11 +116,11 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
                 constraint = constraint.toString().toUpperCase();
 
 
-                ArrayList<SingleRowForShops> filters = new ArrayList<>();
+                ArrayList<SingleRowForAllInvoices> filters = new ArrayList<>();
 
                 for (int i = 0; i < tmpArray.size(); i++) {
                     if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForShops singleRow = new SingleRowForShops(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
+                        SingleRowForAllInvoices singleRow = new SingleRowForAllInvoices(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
 
 
 
@@ -132,7 +132,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
                     }
 
                     if (tmpArray.get(i).getAge().toUpperCase().contains(constraint)) {
-                        SingleRowForShops singleRow = new SingleRowForShops(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
+                        SingleRowForAllInvoices singleRow = new SingleRowForAllInvoices(tmpArray.get(i).getName(),tmpArray.get(i).getAge());
 
 
 
@@ -158,7 +158,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            originalArray  = (ArrayList<SingleRowForShops>)results.values;
+            originalArray  = (ArrayList<SingleRowForAllInvoices>)results.values;
             notifyDataSetChanged();
         }
     }
