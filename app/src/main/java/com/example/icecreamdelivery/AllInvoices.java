@@ -69,7 +69,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
 
 
-            singleRow = new SingleRowForAllInvoices(shopName, c.getString(0), c.getString(2),"2","3","4","5");
+            singleRow = new SingleRowForAllInvoices(shopName, c.getString(0), c.getString(1),c.getString(2));
 
             myList.add(singleRow);
 

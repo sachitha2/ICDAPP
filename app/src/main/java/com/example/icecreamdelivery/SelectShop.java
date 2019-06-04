@@ -1,6 +1,5 @@
 package com.example.icecreamdelivery;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;

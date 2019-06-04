@@ -42,9 +42,9 @@ public class ShopsListAdapter extends BaseAdapter implements Filterable {
         View row = inflater.inflate(R.layout.shops_list_layout,null);
 
         TextView textView =(TextView)row.findViewById(R.id.txtShopName);
-        TextView textId = row.findViewById(R.id.txtShopId);
-        TextView textAddress = row.findViewById(R.id.txtAddress);
-        TextView textContact = row.findViewById(R.id.txtContact);
+        TextView textId = row.findViewById(R.id.txtInvoiceId);
+        TextView textAddress = row.findViewById(R.id.txtInvoiceId);
+        TextView textContact = row.findViewById(R.id.txtTotal);
         TextView textRoute = row.findViewById(R.id.txtRoot);
         TextView textIdCard = row.findViewById(R.id.txtIdNo);
         TextView textCredit = row.findViewById(R.id.txtCredit);

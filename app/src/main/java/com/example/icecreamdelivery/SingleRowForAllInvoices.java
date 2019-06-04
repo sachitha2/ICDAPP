@@ -3,6 +3,17 @@ package com.example.icecreamdelivery;
 public class SingleRowForAllInvoices {
     String name;
     String id;
+    String shopId;
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    String total;
 
     public SingleRowForAllInvoices(String name, String id, String address, String contact, String route, String idCardN, String credit) {
         this.name = name;
@@ -23,16 +34,26 @@ public class SingleRowForAllInvoices {
     //By Chatson
 
 
-    public SingleRowForAllInvoices(String name,String id) {
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public SingleRowForAllInvoices(String name, String id, String shopId,String total) {
         this.name = name;
         this.id = id;
+        this.shopId = shopId;
+        this.total = total;
     }
 
     public String getName() {
         return name;
     }
 
-    public  String getAge(){
+    public  String getId(){
         return  id;
     }
 
@@ -40,7 +61,7 @@ public class SingleRowForAllInvoices {
         this.name = name;
     }
 
-    public  void  setAge(String id){
+    public  void  setId(String id){
         this.id = id;
     }
 

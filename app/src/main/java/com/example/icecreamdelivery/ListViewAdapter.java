@@ -104,10 +104,10 @@ public class ListViewAdapter extends BaseAdapter {
 
                 btnView = myInflater.inflate(R.layout.shops_list_layout,null);
 
-                TextView shopId = (TextView)btnView.findViewById(R.id.txtShopId);
+                TextView shopId = (TextView)btnView.findViewById(R.id.txtInvoiceId);
                 TextView shopName = (TextView)btnView.findViewById(R.id.txtShopName);
-                TextView address = (TextView)btnView.findViewById(R.id.txtAddress);
-                TextView contact = (TextView)btnView.findViewById(R.id.txtContact);
+                TextView address = (TextView)btnView.findViewById(R.id.txtInvoiceId);
+                TextView contact = (TextView)btnView.findViewById(R.id.txtTotal);
                 TextView root = (TextView)btnView.findViewById(R.id.txtRoot);
                 TextView idNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView credit = (TextView)btnView.findViewById(R.id.txtCredit);
@@ -142,10 +142,10 @@ public class ListViewAdapter extends BaseAdapter {
 //
                 btnView = myInflater.inflate(R.layout.shops_list_layout,null);
 
-                TextView RshopId = (TextView)btnView.findViewById(R.id.txtShopId);
+                TextView RshopId = (TextView)btnView.findViewById(R.id.txtInvoiceId);
                 TextView RshopName = (TextView)btnView.findViewById(R.id.txtShopName);
-                TextView Raddress = (TextView)btnView.findViewById(R.id.txtAddress);
-                TextView Rcontact = (TextView)btnView.findViewById(R.id.txtContact);
+                TextView Raddress = (TextView)btnView.findViewById(R.id.txtInvoiceId);
+                TextView Rcontact = (TextView)btnView.findViewById(R.id.txtTotal);
                 TextView Rroot = (TextView)btnView.findViewById(R.id.txtRoot);
                 TextView RidNo = (TextView)btnView.findViewById(R.id.txtIdNo);
                 TextView Rcredit = (TextView)btnView.findViewById(R.id.txtCredit);

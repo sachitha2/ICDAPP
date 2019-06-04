@@ -69,7 +69,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtShopId"
+                android:id="@+id/txtInvoiceId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
@@ -87,7 +87,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtAddress"
+                android:id="@+id/txtShopId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
@@ -96,7 +96,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/txtContact"
+                android:id="@+id/txtTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|left"
