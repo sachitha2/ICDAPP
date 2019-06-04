@@ -135,7 +135,9 @@ public class Download extends AppCompatActivity {
                 //"id bigint PRIMARY KEY AUTOINCREMENT," +
                 "id varchar(18) NOT NULL," +
                 "shopId int(6) NOT NULL," +
-                "Total int(10) NOT NULL );");
+                "Total int(10) NOT NULL," +
+                "credit int(10) NOT NULL," +
+                "cash int(10) NOT NULL);");
 
     }
 

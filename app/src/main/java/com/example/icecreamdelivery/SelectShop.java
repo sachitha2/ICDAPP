@@ -98,7 +98,7 @@ public class SelectShop extends AppCompatActivity {
                 }
 
 
-                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", "+fullTotal+");");
+                sqLiteSelectShop.execSQL("INSERT INTO deal (id, shopId, Total, credit, cash) VALUES ('"+vehicleId+"-"+time+"', "+ShopId+", "+fullTotal+",250,550);");
                 Log.d("Reading json object", "onClick: "+invoice);
                 Log.d("Reading json object L", "onClick: length of json object"+invoice.length());
 //                sqLiteSelectShop.execSQL("");
