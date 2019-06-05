@@ -1,5 +1,6 @@
 package com.example.icecreamdelivery;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -41,10 +42,22 @@ public class ViewAInvoice extends AppCompatActivity {
         //buton
         btnCompleteI = findViewById(R.id.btnCompleteI);
 
+        //get invoice as json
+
+
+        //get invoice as json
+        ///TODO here
+
         btnCompleteI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentSelectShop = new Intent(ViewAInvoice.this, CompleteInvoice.class);
+                intentSelectShop.putExtra("ShopId", "10");
+                intentSelectShop.putExtra("ShopName", "san");
+                intentSelectShop.putExtra("invoiceNumber", invoiceId);
+//                intentSelectShop.putExtra("json",invoice.toString());
+                intentSelectShop.putExtra("itemTotla","2500");
+                startActivity(intentSelectShop);
             }
         });
 
