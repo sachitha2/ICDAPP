@@ -353,6 +353,9 @@ public class CompleteInvoice extends AppCompatActivity {
 
         try {
             outStream.write(msgBuffer);
+
+
+
         } catch (IOException e) {
             String msg = "In onResume() and an exception occurred during write: " + e.getMessage();
             if (address.equals("00:00:00:00:00:00"))

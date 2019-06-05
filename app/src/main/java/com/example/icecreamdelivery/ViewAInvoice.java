@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ public class ViewAInvoice extends AppCompatActivity {
     public TextView totalTxt;
     public TextView txtCash;
     public TextView txtCredit;
+    public Button btnCompleteI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,17 @@ public class ViewAInvoice extends AppCompatActivity {
         totalTxt = findViewById(R.id.txtTotal);
         txtCash = findViewById(R.id.txtCash);
         txtCredit = findViewById(R.id.txtCredit);
+
+
+        //buton
+        btnCompleteI = findViewById(R.id.btnCompleteI);
+
+        btnCompleteI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         //Read deal start
         Cursor cDeal =sqLiteDatabase.rawQuery("SELECT * FROM deal where id = '"+invoiceId+"' ;",null);
