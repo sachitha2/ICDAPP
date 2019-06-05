@@ -20,6 +20,38 @@
             android:textSize="40dp"
             android:textColor="@color/colorAccent"
             android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/txtCash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grand Total 2500"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/txtCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grand Total 2500"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/btnCompleteI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bgbutton"
+            android:backgroundTint="#8BC34A"
+            android:padding="5dp"
+            android:text="Print" />
+
+
         <LinearLayout
             android:id="@+id/itemList"
             android:layout_width="match_parent"

@@ -14,6 +14,8 @@ public class ViewAInvoice extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
 
     public TextView totalTxt;
+    public TextView txtCash;
+    public TextView txtCredit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,16 @@ public class ViewAInvoice extends AppCompatActivity {
 
         //
         totalTxt = findViewById(R.id.txtTotal);
+        txtCash = findViewById(R.id.txtCash);
+        txtCredit = findViewById(R.id.txtCredit);
+
+        //Read deal start
+        Cursor cDeal =sqLiteDatabase.rawQuery("SELECT * FROM deal where id = '"+invoiceId+"' ;",null);
+        cDeal.moveToNext();
+        txtCash.setText("Cash : "+cDeal.getString(4));
+        txtCredit.setText("Credit :"+cDeal.getString(3));
+        //Read deal end
+
 
 
         //get total
