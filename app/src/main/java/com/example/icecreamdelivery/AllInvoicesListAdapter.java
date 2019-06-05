@@ -63,7 +63,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View v) {
 
-                Intent intentSelectShop = new Intent(c, SelectShop.class);
+                Intent viewAInvoice = new Intent(c, ViewAInvoice.class);
 
 //                intentSelectShop.putExtra("ShopId", ShopId[position]);
 //                intentSelectShop.putExtra("ShopName", ShopName[position]);
@@ -82,7 +82,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 //                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
 //                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
 //                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
-//                c.startActivity(intentSelectShop);
+                c.startActivity(viewAInvoice);
                 Toast.makeText(c, "Invoice " + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
