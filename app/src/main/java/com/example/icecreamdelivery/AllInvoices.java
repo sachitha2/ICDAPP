@@ -35,7 +35,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
         sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);
 
-        shopsList = (ListView) findViewById(R.id.shopsList);
+        shopsList = (ListView) findViewById(R.id.dataList);
         search = (EditText) findViewById(R.id.search);
         total = findViewById(R.id.txtTotal);
         Cursor totalCash =sqLiteShops.rawQuery("SELECT SUM(Total) FROM deal;",null);

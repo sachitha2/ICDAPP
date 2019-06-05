@@ -65,23 +65,7 @@ public class AllInvoicesListAdapter extends BaseAdapter implements Filterable {
 
                 Intent viewAInvoice = new Intent(c, ViewAInvoice.class);
 
-//                intentSelectShop.putExtra("ShopId", ShopId[position]);
-//                intentSelectShop.putExtra("ShopName", ShopName[position]);
-//                intentSelectShop.putExtra("Address", Address[position]);
-//                intentSelectShop.putExtra("Contact", Contact[position]);
-//                intentSelectShop.putExtra("Root", Root[position]);
-//                intentSelectShop.putExtra("IdNo", IdNo[position]);
-//                intentSelectShop.putExtra("Credit", Credit[position]);
-
-
-                //TODO Config putExtra variables here
-//                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
-//                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
-//                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
+                viewAInvoice.putExtra("InvoiceId", originalArray.get(position).getId());
                 c.startActivity(viewAInvoice);
                 Toast.makeText(c, "Invoice " + " was clicked", Toast.LENGTH_SHORT).show();
             }

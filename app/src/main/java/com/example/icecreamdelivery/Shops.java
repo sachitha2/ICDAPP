@@ -1,6 +1,5 @@
 package com.example.icecreamdelivery;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +32,7 @@ public class Shops extends AppCompatActivity implements TextWatcher{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
 
-        shopsList = (ListView) findViewById(R.id.shopsList);
+        shopsList = (ListView) findViewById(R.id.dataList);
         search = (EditText) findViewById(R.id.search);
 
         sqLiteShops = openOrCreateDatabase("ICD", Shops.MODE_PRIVATE,null);

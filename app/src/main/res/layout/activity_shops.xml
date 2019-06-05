@@ -24,7 +24,7 @@
             android:inputType="textPersonName" />
 
         <ListView
-            android:id="@+id/shopsList"
+            android:id="@+id/dataList"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </ListView>
