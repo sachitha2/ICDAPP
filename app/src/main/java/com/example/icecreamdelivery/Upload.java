@@ -124,7 +124,7 @@ public class Upload extends AppCompatActivity {
 
         Log.d("JSON","json"+json);
 
-        String url = "http://icd.infinisolutionslk.com/JSONGetTransaction.php?data="+json.toString();
+        String url = "http://icd.infinisolutionslk.com/JSONGetT.php?data="+json.toString();
         Log.d("JSON URL",url);
         JsonObjectRequest requestDownloadStock = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
