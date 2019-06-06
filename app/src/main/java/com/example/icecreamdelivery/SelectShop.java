@@ -184,105 +184,72 @@ public class SelectShop extends AppCompatActivity {
     }
 
     public void onAddClick(View view) {
-
-//        Log.d("Sachitha","1");
+        if(edtQuantity.getText().length() != 0){
 
         if (price.getSelectedItem() == null) {
             Log.d("Sachitha","Price is null");
         } else {
 
 
+            JSONArray temp = new JSONArray();
+            temp.put(item.getSelectedItem() + "");
+            temp.put(price.getSelectedItem() + "");
+            temp.put(edtQuantity.getText() + "");
+            temp.put(Id[item.getSelectedItemPosition()]);
 
-        JSONArray temp = new JSONArray();
-        temp.put(item.getSelectedItem() + "");
-        temp.put(price.getSelectedItem() + "");
-        temp.put(edtQuantity.getText() + "");
-        temp.put(Id[item.getSelectedItemPosition()]);
+            try {
+                invoice.put(itemCount + "", temp);//Id[item.getSelectedItemPosition()]
+                itemCount++;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        try {
-//            Log.d("Sachitha","2");
-            invoice.put(itemCount + "", temp);//Id[item.getSelectedItemPosition()]
-            itemCount++;
-        } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Sachitha", invoice.toString());
+
+
+            //new code
+            LinearLayout linearLayout = new LinearLayout(SelectShop.this);
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayout.setPadding(0, 20, 0, 20);
+
+
+            TextView textView1 = new TextView(this);
+            textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
+            textView1.setText(item.getSelectedItem() + "");
+
+            TextView textView2 = new TextView(this);
+            textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
+            textView2.setText(price.getSelectedItem() + "");
+
+            TextView textView3 = new TextView(this);
+            textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
+            textView3.setText(edtQuantity.getText() + "");
+
+            TextView textView4 = new TextView(this);
+            textView4.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
+
+            qty = edtQuantity.getText() + "";
+            edtQuantity.setText("");
+            float sPrice = Float.parseFloat(price.getSelectedItem().toString());
+            textView4.setText((Integer.valueOf(qty) * sPrice) + "");
+
+            fullTotal += (Integer.valueOf(qty) * sPrice);
+
+            total.setText("Total \n" + fullTotal + "");
+
+            //new code
+
+            linearLayout.addView(textView1);
+            linearLayout.addView(textView2);
+            linearLayout.addView(textView3);
+            linearLayout.addView(textView4);
+
+
+            itemList.addView(linearLayout);
+
         }
-
-        Log.d("Sachitha", invoice.toString());
-
-//        Log.d("Sachitha","3");
-
-        //new code
-//        Log.d("Sachitha","3");
-        LinearLayout linearLayout = new LinearLayout(SelectShop.this);
-        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.setPadding(0, 20, 0, 20);
-
-
-        TextView textView1 = new TextView(this);
-        textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
-        textView1.setText(item.getSelectedItem() + "");
-
-        TextView textView2 = new TextView(this);
-        textView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-        textView2.setText(price.getSelectedItem() + "");
-
-        TextView textView3 = new TextView(this);
-        textView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-        textView3.setText(edtQuantity.getText() + "");
-
-        TextView textView4 = new TextView(this);
-        textView4.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.2f));
-
-        qty = edtQuantity.getText() + "";
-        float sPrice = Float.parseFloat(price.getSelectedItem().toString());
-        textView4.setText((Integer.valueOf(qty) * sPrice) + "");
-
-        fullTotal +=  (Integer.valueOf(qty) * sPrice);
-
-        total.setText("Total \n"+fullTotal + "");
-
-        //new code
-
-
-//        LinearLayout linearLayout = new LinearLayout(SelectShop.this);
-//        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-//        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-//
-//        TextView textView1 = new TextView(this);
-//        textView1.setText(item.getSelectedItem()+"");
-//
-//        TextView textView2 = new TextView(this);
-//        textView2.setText(price.getSelectedItem()+"");
-//
-//        TextView textView3 = new TextView(this);
-//        textView3.setText(edtQuantity.getText()+"");
-
-//        int tot = Integer.valueOf(price.getSelectedItem()+"") * Integer.parseInt(edtQuantity.getText().toString());
-
-//        TextView textView4 = new TextView(this);
-//        textView4.setText(tot+"");
-        linearLayout.addView(textView1);
-        linearLayout.addView(textView2);
-        linearLayout.addView(textView3);
-        linearLayout.addView(textView4);
-
-
-        itemList.addView(linearLayout);
-
-//        Log.d("Sachitha","6");
     }
     }
 }
 
-//TODO Add button eke functions tika
-//TODO complete invoice button eke functions tika
-
-//        ShopId= getIntent().getStringExtra("ShopId");
-//        ShopName= getIntent().getStringExtra("ShopName");
-//        Address= getIntent().getStringExtra("Address");
-//        Contact= getIntent().getStringExtra("Contact");
-//        Root= getIntent().getStringExtra("Root");
-//        SDate= getIntent().getStringExtra("SDate");
-//        IdNo= getIntent().getStringExtra("IdNo");
-//        Credit= getIntent().getStringExtra("Credit");
