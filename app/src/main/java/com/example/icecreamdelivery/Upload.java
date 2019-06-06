@@ -40,7 +40,14 @@ public class Upload extends AppCompatActivity {
 
         requestQueueForStock = Volley.newRequestQueue(Upload.this);
         try {
-            jsonParseStockAndPriceRangeTable(progressDialog);
+            //looking for status start
+                Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal where s = 0 ;",null);
+                int nRow = cForDeals.getCount();
+                Log.d("Data",nRow + "");
+                jsonParseStockAndPriceRangeTable(progressDialog);
+
+            //looking for status End
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

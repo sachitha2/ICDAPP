@@ -146,6 +146,7 @@ public class CompleteInvoice extends AppCompatActivity {
                 if(cash.length() == 0){
                         Log.d("Print","cash is empty");
                 }else{
+                    //Update data in deal table
 
                 Log.d("Print Buton","Print Button clicked"+cash);
 
@@ -353,7 +354,8 @@ public class CompleteInvoice extends AppCompatActivity {
 
         try {
             outStream.write(msgBuffer);
-
+            Intent intent = new Intent(CompleteInvoice.this, Shops.class);
+            startActivity(intent);
 
 
         } catch (IOException e) {
