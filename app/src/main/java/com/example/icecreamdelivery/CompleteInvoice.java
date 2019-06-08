@@ -160,9 +160,14 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                         Log.d("Print","cash is empty");
                 }else{
                     //updating deal table
-
-
-                  sqLiteSelectShop.execSQL("UPDATE deal SET credit = '"+totalWithCredit+"',cash = "+cash+" WHERE id = '"+invoiceN+"';");
+                    float tmpTotal = 0;
+                    if(totalWithCredit > 0){
+                        tmpTotal = totalWithCredit;
+                    }
+                    else{
+                        tmpTotal = 0;
+                    }
+                  sqLiteSelectShop.execSQL("UPDATE deal SET credit = '"+tmpTotal+"',cash = "+cash+" WHERE id = '"+invoiceN+"';");
 
                     //Update data in deal table
 
@@ -411,7 +416,12 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
             totalCredit.setText((totalWithCredit)+"");
         }else{
             Log.d("MSG","Not Empty");
-            totalCredit.setText((totalWithCredit - Float.valueOf(getCash.getText().toString()))+"");
+            if(totalWithCredit - Float.valueOf(getCash.getText().toString() ) > 0){
+                totalCredit.setText((totalWithCredit - Float.valueOf(getCash.getText().toString()))+"");
+            }
+            else {
+                totalCredit.setText("0");
+            }
         }
 
     }
