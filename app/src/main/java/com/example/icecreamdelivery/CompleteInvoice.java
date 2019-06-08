@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -158,6 +159,11 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                 if(cash.length() == 0){
                         Log.d("Print","cash is empty");
                 }else{
+                    //updating deal table
+
+
+                  sqLiteSelectShop.execSQL("UPDATE deal SET credit = '"+totalWithCredit+"',cash = "+cash+" WHERE id = '"+invoiceN+"';");
+
                     //Update data in deal table
 
                 Log.d("Print Buton","Print Button clicked"+cash);
@@ -379,8 +385,8 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
             outStream.write(msgBuffer);
             //Add sync function to here
             ///TODO
-            Intent intent = new Intent(CompleteInvoice.this, Shops.class);
-            startActivity(intent);
+//            Intent intent = new Intent(CompleteInvoice.this, Shops.class);
+//            startActivity(intent);
 
 
         } catch (IOException e) {
