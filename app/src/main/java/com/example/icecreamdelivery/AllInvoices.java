@@ -97,7 +97,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
 
         shopsList.setAdapter(shopsListAdapter);
 
-
+        sqLiteShops.close();
 
     }
 

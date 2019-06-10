@@ -138,7 +138,8 @@ public class Download extends AppCompatActivity {
                 "Total int(10) NOT NULL," +
                 "credit int(10) NOT NULL," +
                 "cash int(10) NOT NULL," +
-                "s int(1) NOT NULL);");
+                "s int(1) NOT NULL," +
+                "date date NOT NULL);");
 
     }
 
