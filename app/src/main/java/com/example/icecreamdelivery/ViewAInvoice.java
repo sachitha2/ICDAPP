@@ -106,7 +106,7 @@ public class ViewAInvoice extends AppCompatActivity {
         //Creating bill start
         //------------------------------------------------------------------------------------------
         BILL =
-                "-----------------------------------------------\n"+
+                        "-----------------------------------------------\n"+
                         "                 Island Dairies                \n"+
                         "-----------------------------------------------\n"+
                         "  Address                    \n"+
@@ -134,6 +134,17 @@ public class ViewAInvoice extends AppCompatActivity {
         float sPrice ;
         int nItems = 0;
         float fullTotal = 0;
+
+
+        ///get invoice data to here Start
+        Cursor cForInvoiceBill =sqLiteDatabase.rawQuery("SELECT * FROM invoice where id = '"+invoiceId+"' ;",null);
+        while (cForInvoiceBill.moveToNext()){
+
+            BILL = BILL + "  Item name \n";
+            BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", 10, 20, 25)+"\n";
+        }
+        ///get invoice data to here End
+
 //        try {
 //            JSONObject obj = new JSONObject(json);
 //            nItems = obj.length();
@@ -147,8 +158,7 @@ public class ViewAInvoice extends AppCompatActivity {
 //                sPrice = Float.parseFloat(rate);
 //                total = sPrice * Integer.valueOf(qty);
 //                fullTotal += total;
-//                BILL = BILL + "  "+itemName+" \n";
-//                BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", qty, rate, total+"")+"\n";
+//
 //            }
 //
 //        } catch (JSONException e) {

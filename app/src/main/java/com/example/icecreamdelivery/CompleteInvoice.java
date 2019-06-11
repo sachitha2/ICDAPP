@@ -203,7 +203,7 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                     progressDialog.show();
                     float tmpTotal = 0;
                     if(totalWithCredit > 0){
-                        tmpTotal = totalWithCredit;
+                        tmpTotal = totalWithCredit - Float.valueOf(cash);
                     }
                     else{
                         tmpTotal = 0;
