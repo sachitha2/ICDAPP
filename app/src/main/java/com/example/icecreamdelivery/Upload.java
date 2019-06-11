@@ -89,11 +89,14 @@ public class Upload extends AppCompatActivity {
                     JSONArray oneInvoice = new JSONArray();
 
                    while(cForInvoiceData.moveToNext()){
-
+                            Cursor cForStock = sqLiteDatabase.rawQuery("SELECT * FROM stock where itemId = '"+cForInvoiceData.getString(2)+"' ;",null);
+                                   cForStock.moveToNext();
                        JSONObject invoiceItemData = new JSONObject();
                        invoiceItemData.put("qty",cForInvoiceData.getString(3));
                        invoiceItemData.put("p",cForInvoiceData.getString(4));
                        invoiceItemData.put("iId",cForInvoiceData.getString(2));
+                       invoiceItemData.put("sId",cForStock.getString(0));
+                       invoiceItemData.put("lS",cForStock.getString(2));
 
                        Log.d("invoiceData",cForInvoiceData.getString(3));
 
@@ -108,7 +111,7 @@ public class Upload extends AppCompatActivity {
                     invoiceItems.put(oneInvoice);
 
 
-            if(i == 50){
+            if(i == 20){
                 break;
             }
             i++;
@@ -141,8 +144,15 @@ public class Upload extends AppCompatActivity {
                         try {
                             //Read json and assign them to local variables
                             progressDialog.hide();
-                            JSONArray Status = response.getJSONArray("Status");
-                            Log.d("Upload ","In uploading"+Status);
+                            JSONArray invoices = response.getJSONArray("invoices");
+
+                            Log.d("Upload ","In uploading"+invoices);
+                            Log.d("Upload ","In uploading"+invoices.length());
+
+                            for(int i = 0;i < invoices.length();i++){
+                                Log.d("Upload ","In uploading"+invoices.get(i));
+                            }
+                            //TODO HERE
 
                         } catch (JSONException e) {
                             e.printStackTrace();
