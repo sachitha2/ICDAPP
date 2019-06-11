@@ -127,6 +127,16 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_invoice);
         mac = "02:2F:01:1E:CA:40";
+        ///progress dialog
+        final ProgressDialog progressDialog = new ProgressDialog(CompleteInvoice.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("");
+        progressDialog.setCancelable(false);
+
+        ///progress dialog
+
+
+
         SharedPreferences sharedPreferencesSS = getSharedPreferences("prefs", Login.MODE_PRIVATE);
         final String MAC = sharedPreferencesSS.getString("MAC", "sam");
         Log.d("MAC",MAC);
@@ -190,6 +200,7 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                         Log.d("Print","cash is empty");
                 }else{
                     //updating deal table
+                    progressDialog.show();
                     float tmpTotal = 0;
                     if(totalWithCredit > 0){
                         tmpTotal = totalWithCredit;
@@ -281,11 +292,12 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
 
                //print bill here
                     try {
+
                         findBT();
                         openBT();
 
 
-                        sendData(BILL);
+                        sendData(BILL,progressDialog);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -583,7 +595,7 @@ void closeBT() throws IOException {
         }
     }
     // this will send text data to be printed by the bluetooth printer
-    void sendData(String BILL) throws IOException {
+    void sendData(String BILL, final ProgressDialog o) throws IOException {
         try {
 
             // the text typed by the user
@@ -591,7 +603,21 @@ void closeBT() throws IOException {
             msg = BILL;
             mmOutputStream.write(msg.getBytes());
             //Added by chata
-            closeBT();
+//            closeBT();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // Actions to do after 3 seconds
+                    o.hide();
+                    CompleteInvoice.this.finish();
+                    try {
+                        closeBT();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 3000);
+
             // tell the user data were sent
 
         } catch (Exception e) {
