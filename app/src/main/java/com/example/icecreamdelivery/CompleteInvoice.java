@@ -278,8 +278,9 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                 BILL = BILL + "  Total Qty       :" + "     " + nItems + "\n";
                 BILL = BILL + "  Total Value     :" + "     " + fullTotal + "\n";
                 BILL = BILL + "  Previous credit :" + "     " + preCredit + "\n";
+                BILL = BILL + "  Grand Total     :" + "     " + (Float.valueOf(preCredit) + Float.valueOf(fullTotal)) + "\n";
                 BILL = BILL + "  Cash            :" + "     " + cash + "\n";
-                BILL = BILL + "  Credit Forward  :" + "     " + "00.00" + "\n";
+                BILL = BILL + "  Credit Forward  :" + "     " + tmpTotal + "\n";
 
                 BILL = BILL
                         + "-----------------------------------------------\n"

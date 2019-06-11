@@ -33,7 +33,7 @@ public class ViewAInvoice extends AppCompatActivity {
     public  String invoiceId;
     private LinearLayout itemList;
     SQLiteDatabase sqLiteDatabase;
-
+    float preCredit;
 
 
     Date currentTime = Calendar.getInstance().getTime();
@@ -90,6 +90,12 @@ public class ViewAInvoice extends AppCompatActivity {
 
         Cursor cForDeal =sqLiteDatabase.rawQuery("SELECT * FROM deal where id = '"+invoiceId+"' ;",null);
         cForDeal.moveToNext();
+
+
+        Cursor cForItems =sqLiteDatabase.rawQuery("SELECT * FROM shop where id = "+cForDeal.getString(1)+" ;",null);
+        cForItems.moveToNext();
+
+        preCredit =Integer.valueOf(cForItems.getString(6));
 
         Log.d("SQL",cForDeal.getString(0)+"");
 
@@ -153,9 +159,10 @@ public class ViewAInvoice extends AppCompatActivity {
 
         BILL = BILL + "  Total Qty       :" + "     " + nItems + "\n";
         BILL = BILL + "  Total Value     :" + "     " + fullTotal + "\n";
-        BILL = BILL + "  Previous credit :" + "     " + fullTotal + "\n";
+        BILL = BILL + "  Previous credit :" + "     " + preCredit + "\n";
+        BILL = BILL + "  Grand Total     :" + "     " + (Float.valueOf(preCredit) + Float.valueOf(fullTotal))+ "\n";
         BILL = BILL + "  Cash            :" + "     " + cForDeal.getString(4) + "\n";
-        BILL = BILL + "  Credit Forward  :" + "     " + "00.00" + "\n";
+        BILL = BILL + "  Credit Forward  :" + "     " + (Float.valueOf(preCredit) + Float.valueOf(fullTotal) - Float.valueOf(cForDeal.getString(4))) + "\n";
 
         BILL = BILL
                 + "-----------------------------------------------\n"

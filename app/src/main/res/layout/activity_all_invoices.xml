@@ -22,14 +22,15 @@
             android:ems="10"
             android:hint="Search...."
             android:inputType="textPersonName" />
+
         <TextView
             android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Grand Total 2500"
-            android:textSize="40dp"
+            android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textAlignment="center"/>
+            android:textSize="30dp" />
         <ListView
             android:id="@+id/dataList"
             android:layout_width="match_parent"
