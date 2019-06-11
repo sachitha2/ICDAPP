@@ -8,13 +8,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class SalesItem extends AppCompatActivity  implements TextWatcher {
     private ListView itemList;
     EditText search;
-
+    TextView total;
+    TextView cash;
     private ListView shopsList;
 
     //chatson
@@ -35,11 +37,28 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
 
         itemList = findViewById(R.id.salesItemList);
         search = findViewById(R.id.searchSalesItems);
-
+        total = findViewById(R.id.txtTotal);
+        cash = findViewById(R.id.txtCashTotal);
 
         shopsList = itemList;
 
         sqLiteShops = openOrCreateDatabase("ICD", SalesItem.MODE_PRIVATE,null);
+
+
+        //--------------------------------------------------------------------------------------
+        //get full total start
+        //--------------------------------------------------------------------------------------
+
+        Cursor cDeal =sqLiteShops.rawQuery("SELECT SUM(Total),SUM(credit) FROM deal;",null);
+        cDeal.moveToNext();
+
+        total.setText("Grand Total "+cDeal.getString(0));
+        cash.setText("Cash Total "+cDeal.getString(1));
+        //--------------------------------------------------------------------------------------
+        //get full total end
+        //--------------------------------------------------------------------------------------
+
+
 
         Cursor c =sqLiteShops.rawQuery("SELECT * FROM item ;",null);
 

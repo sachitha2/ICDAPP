@@ -28,9 +28,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Grand Total 2500"
-            android:textSize="40dp"
+            android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textAlignment="center"/>
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txtCashTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cash 2500"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnCompleteI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bgbutton"
+            android:backgroundTint="#8BC34A"
+            android:padding="5dp"
+            android:text="Print" />
 
         <ListView
             android:id="@+id/salesItemList"

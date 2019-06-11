@@ -137,37 +137,15 @@ public class ViewAInvoice extends AppCompatActivity {
 
 
         ///get invoice data to here Start
-        Cursor cForInvoiceBill =sqLiteDatabase.rawQuery("SELECT * FROM invoice where id = '"+invoiceId+"' ;",null);
+        Cursor cForInvoiceBill =sqLiteDatabase.rawQuery("SELECT * FROM invoice where dealId = '"+invoiceId+"' ;",null);
         while (cForInvoiceBill.moveToNext()){
-
+            nItems++;
             BILL = BILL + "  Item name \n";
-            BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", 10, 20, 25)+"\n";
+            BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", cForInvoiceBill.getInt(3), cForInvoiceBill.getFloat(4), (cForInvoiceBill.getInt(3) * cForInvoiceBill.getFloat(4))+"")+"\n";
+            fullTotal += (cForInvoiceBill.getInt(3) * cForInvoiceBill.getFloat(4));
         }
         ///get invoice data to here End
 
-//        try {
-//            JSONObject obj = new JSONObject(json);
-//            nItems = obj.length();
-//            for(int x = 0;x < obj.length();x++){
-//
-//                JSONArray tmpJson = obj.getJSONArray(""+x+"");
-//                itemName = tmpJson.getString(0);
-//                rate = tmpJson.getString(1);
-//                qty = tmpJson.getString(2);
-////                        total = ();
-//                sPrice = Float.parseFloat(rate);
-//                total = sPrice * Integer.valueOf(qty);
-//                fullTotal += total;
-//
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-        //        BILL = BILL + "  Testing String \n";
 
         BILL = BILL
                 + "\n-----------------------------------------------";
@@ -176,7 +154,7 @@ public class ViewAInvoice extends AppCompatActivity {
         BILL = BILL + "  Total Qty       :" + "     " + nItems + "\n";
         BILL = BILL + "  Total Value     :" + "     " + fullTotal + "\n";
         BILL = BILL + "  Previous credit :" + "     " + fullTotal + "\n";
-        BILL = BILL + "  Cash            :" + "     " + fullTotal + "\n";
+        BILL = BILL + "  Cash            :" + "     " + cForDeal.getString(4) + "\n";
         BILL = BILL + "  Credit Forward  :" + "     " + "00.00" + "\n";
 
         BILL = BILL
