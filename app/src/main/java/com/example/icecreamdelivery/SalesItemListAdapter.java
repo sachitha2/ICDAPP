@@ -47,7 +47,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
           txtItemName.setText(originalArray.get(position).getName());
           txtAmount.setText("5000");
-          txtRAmount.setText("2500");
+          txtRAmount.setText(originalArray.get(position).getrAmount());
           txtTotalCash.setText("35,000");
 
 
@@ -57,23 +57,10 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
 //                Intent intentSelectShop = new Intent(c, SelectShop.class);
 
-//                intentSelectShop.putExtra("ShopId", ShopId[position]);
-//                intentSelectShop.putExtra("ShopName", ShopName[position]);
-//                intentSelectShop.putExtra("Address", Address[position]);
-//                intentSelectShop.putExtra("Contact", Contact[position]);
-//                intentSelectShop.putExtra("Root", Root[position]);
-//                intentSelectShop.putExtra("IdNo", IdNo[position]);
-//                intentSelectShop.putExtra("Credit", Credit[position]);
 
 
                   //TODO Config putExtra variables here
 //                intentSelectShop.putExtra("ShopId", originalArray.get(position).getAge());
-//                intentSelectShop.putExtra("ShopName", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Address", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Contact", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Root",originalArray.get(position).getName());
-//                intentSelectShop.putExtra("IdNo", originalArray.get(position).getName());
-//                intentSelectShop.putExtra("Credit", originalArray.get(position).getName());
 //                c.startActivity(intentSelectShop);
                   Toast.makeText(c, originalArray.get(position).getName() + " was clicked", Toast.LENGTH_SHORT).show();
             }
@@ -115,7 +102,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
                 for (int i = 0; i < tmpArray.size(); i++) {
                     if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
+                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName(),tmpArray.get(i).getrAmount());
 
 
 
@@ -125,18 +112,6 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
 
                     }
-
-//                    if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-//                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName());
-//
-//
-//
-//                        filters.add(singleRow);
-//
-//
-//
-//
-//                    }
 
                 }
                 results.count = filters.size();

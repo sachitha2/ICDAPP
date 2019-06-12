@@ -5,9 +5,23 @@ public class SingleRowForSalesItems {
     String name;
 
 
-    public SingleRowForSalesItems(String id, String name) {
+
+    String rAmount;
+
+
+    public SingleRowForSalesItems(String id, String name,String rAmount) {
         this.id = id;
         this.name = name;
+        this.rAmount = rAmount;
+    }
+
+
+    public String getrAmount() {
+        return rAmount;
+    }
+
+    public void setrAmount(String rAmount) {
+        this.rAmount = rAmount;
     }
 
     public String getId() {

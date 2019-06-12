@@ -49,13 +49,13 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         //get full total start
         //--------------------------------------------------------------------------------------
 
-        Cursor cDeal =sqLiteShops.rawQuery("SELECT SUM(Total),SUM(credit) FROM deal;",null);
+        Cursor cDeal =sqLiteShops.rawQuery("SELECT SUM(Total),SUM(credit),SUM(cash) FROM deal WHERE s = 0 OR s = 1 AND date = date('now','localtime');",null);
         cDeal.moveToNext();
 
         total.setText("Grand Total "+cDeal.getString(0));
-        cash.setText("Cash Total "+cDeal.getString(1));
+        cash.setText("Cash Total "+cDeal.getString(2));
         //--------------------------------------------------------------------------------------
-        //get full total end
+            //get full total end
         //--------------------------------------------------------------------------------------
 
 
@@ -69,7 +69,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         SingleRowForSalesItems singleRow;
         int i = 0;
         while (c.moveToNext()){
-            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1));
+            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1),"25");
 
             myList.add(singleRow);
 
