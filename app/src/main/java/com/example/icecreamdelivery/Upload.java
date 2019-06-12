@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,16 +36,29 @@ public class Upload extends AppCompatActivity {
         progressDialog.setTitle("Uploading Data....");
         progressDialog.setMessage("");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+
 
 
         requestQueueForStock = Volley.newRequestQueue(Upload.this);
         try {
             //looking for status start
-                Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal where s = 0 ;",null);
+                Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal where s = 0  AND date =  date('now','localtime');",null);
                 int nRow = cForDeals.getCount();
                 Log.d("Data",nRow + "");
+
+
+//            Cursor CForNR =sqLiteDatabase.rawQuery("SELECT * FROM deal WHERE s = 0 ;",null);
+
+            int CForNRNum = cForDeals.getCount();
+
+            if(CForNRNum != 0){
                 jsonParseStockAndPriceRangeTable(progressDialog);
+                progressDialog.show();
+            }else{
+                Log.d("SQL","Nodata to upload");
+            }
+
+
 
             //looking for status End
 
@@ -67,7 +81,7 @@ public class Upload extends AppCompatActivity {
 
 
 
-        Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal ;",null);
+        Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal WHERE s = 0 AND date =  date('now','localtime');",null);
 
         int nRow = cForDeals.getCount();
 
@@ -151,6 +165,12 @@ public class Upload extends AppCompatActivity {
 
                             for(int i = 0;i < invoices.length();i++){
                                 Log.d("Upload ","In uploading"+invoices.get(i));
+                                if(invoices.get(i).equals("NO")){
+
+                                }else{
+                                    sqLiteDatabase.execSQL("UPDATE deal SET  s = 1 WHERE id = '"+invoices.get(i)+"';");
+                                }
+
                             }
                             //TODO HERE
 

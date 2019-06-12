@@ -124,7 +124,7 @@ public class Download extends AppCompatActivity {
                 "shopId int(6) NOT NULL," +
                 "stockId int(11) NOT NULL," +
                 "date datetime NOT NULL," +
-                "s int(1) NOT NULL );");
+                "s int(1) NOT NULL );");//s = 0 not uploaded // s= 1 uploaded s = 2 unfinished
 
 
         //Drop Table if Exist

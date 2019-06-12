@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class AllInvoices extends AppCompatActivity implements TextWatcher {
     private ListView shopsList;
     private TextView total;
+    private TextView txtNumInvoice;
     EditText search;
 
     String shopName;
@@ -38,16 +39,19 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
         shopsList = (ListView) findViewById(R.id.dataList);
         search = (EditText) findViewById(R.id.search);
         total = findViewById(R.id.txtTotal);
-        Cursor totalCash =sqLiteShops.rawQuery("SELECT SUM(Total) FROM deal;",null);
+        txtNumInvoice = findViewById(R.id.txtNumInvoice);
+
+        Cursor totalCash =sqLiteShops.rawQuery("SELECT SUM(Total) FROM deal WHERE   date =  date('now','localtime');",null);
         totalCash.moveToNext();
+
         total.setText("Total : "+totalCash.getInt(0));
 
 
 
-        Cursor c =sqLiteShops.rawQuery("SELECT * FROM deal;",null);
+        Cursor c =sqLiteShops.rawQuery("SELECT * FROM deal WHERE   date =  date('now','localtime');",null);
 
         int nRow = c.getCount();
-
+        txtNumInvoice.setText("Number of invoices " + nRow);
         Id = new String[nRow];
         ShopId = new String[nRow];
         ShopName = new String[nRow];

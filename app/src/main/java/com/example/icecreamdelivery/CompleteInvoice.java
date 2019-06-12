@@ -210,7 +210,7 @@ public class CompleteInvoice extends AppCompatActivity implements TextWatcher {
                     else{
                         tmpTotal = 0;
                     }
-                  sqLiteSelectShop.execSQL("UPDATE deal SET credit = '"+tmpTotal+"',cash = "+cash+" WHERE id = '"+invoiceN+"';");
+                  sqLiteSelectShop.execSQL("UPDATE deal SET credit = '"+tmpTotal+"',cash = "+cash+", s = 0 WHERE id = '"+invoiceN+"';");
 
                     //Update data in deal table
 

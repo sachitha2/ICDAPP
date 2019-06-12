@@ -31,6 +31,15 @@
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/txtNumInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grand Total 2500"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp" />
         <ListView
             android:id="@+id/dataList"
             android:layout_width="match_parent"
