@@ -9,10 +9,15 @@ public class SingleRowForSalesItems {
     String rAmount;
 
 
-    public SingleRowForSalesItems(String id, String name,String rAmount) {
+
+    String cash;
+
+
+    public SingleRowForSalesItems(String id, String name,String rAmount,String cash) {
         this.id = id;
         this.name = name;
         this.rAmount = rAmount;
+        this.cash = cash;
     }
 
 
@@ -40,6 +45,12 @@ public class SingleRowForSalesItems {
         this.name = name;
     }
 
+    public String getCash() {
+        return cash;
+    }
 
+    public void setCash(String cash) {
+        this.cash = cash;
+    }
 
 }

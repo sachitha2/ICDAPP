@@ -46,9 +46,9 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
           TextView txtTotalCash = row.findViewById(R.id.txtTotalCash);
 
           txtItemName.setText(originalArray.get(position).getName());
-          txtAmount.setText("5000");
+          txtAmount.setText("0");
           txtRAmount.setText(originalArray.get(position).getrAmount());
-          txtTotalCash.setText("35,000");
+          txtTotalCash.setText(originalArray.get(position).getCash());
 
 
         row.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class SalesItemListAdapter extends BaseAdapter implements Filterable {
 
                 for (int i = 0; i < tmpArray.size(); i++) {
                     if (tmpArray.get(i).getName().toUpperCase().contains(constraint)) {
-                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName(),tmpArray.get(i).getrAmount());
+                        SingleRowForSalesItems singleRow = new SingleRowForSalesItems(tmpArray.get(i).getName(),tmpArray.get(i).getName(),tmpArray.get(i).getrAmount(),tmpArray.get(i).getCash());
 
 
 

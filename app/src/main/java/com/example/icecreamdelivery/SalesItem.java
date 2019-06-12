@@ -71,11 +71,11 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         while (c.moveToNext()){
 
             //Load Soled amount
-            Cursor CForInvoice =sqLiteShops.rawQuery("SELECT SUM(amount) FROM invoice WHERE itemId = 51 ;",null);
+            Cursor CForInvoice =sqLiteShops.rawQuery("SELECT SUM(amount), SUM(amount*sPrice) FROM invoice WHERE itemId = "+c.getString(0)+" AND date = date('now','localtime') ;",null);
             CForInvoice.moveToNext();
 
 
-            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1),CForInvoice.getString(0));
+            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1),CForInvoice.getString(0),CForInvoice.getString(1));
 
             myList.add(singleRow);
 
