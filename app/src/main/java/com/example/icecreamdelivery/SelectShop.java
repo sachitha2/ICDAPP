@@ -89,7 +89,7 @@ public class SelectShop extends AppCompatActivity {
                 for(int x = 0;x < invoice.length();x++){
                     try {
                         JSONArray tmpJson = invoice.getJSONArray(""+x+"");
-                        sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (100, '"+vehicleId+"-"+time+"',"+tmpJson.getString(3)+" , "+tmpJson.getString(2)+","+tmpJson.getString(1)+",2502,25,'2019-12-12',0);");
+                        sqLiteSelectShop.execSQL("INSERT INTO invoice (id, dealId, itemId, amount,sPrice,shopId,stockId,date,s) VALUES (100, '"+vehicleId+"-"+time+"',"+tmpJson.getString(3)+" , "+tmpJson.getString(2)+","+tmpJson.getString(1)+",2502,25, date('now','localtime'),0);");
                         Log.d("json arr", "onClick: "+tmpJson);
                     } catch (JSONException e) {
                         e.printStackTrace();
