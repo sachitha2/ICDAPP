@@ -41,7 +41,7 @@ public class AllInvoices extends AppCompatActivity implements TextWatcher {
         total = findViewById(R.id.txtTotal);
         txtNumInvoice = findViewById(R.id.txtNumInvoice);
 
-        Cursor totalCash =sqLiteShops.rawQuery("SELECT SUM(Total) FROM deal WHERE   date =  date('now','localtime');",null);
+        Cursor totalCash =sqLiteShops.rawQuery("SELECT SUM(Total) FROM deal WHERE S=0 OR S = 1 AND   date =  date('now','localtime');",null);
         totalCash.moveToNext();
 
         total.setText("Total : "+totalCash.getInt(0));
