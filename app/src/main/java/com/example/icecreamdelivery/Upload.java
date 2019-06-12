@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,13 +25,17 @@ public class Upload extends AppCompatActivity {
     private RequestQueue requestQueueForStock;
     ProgressDialog progressDialog;
     SQLiteDatabase sqLiteDatabase;
-
+    TextView txtUploaded;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
         sqLiteDatabase = openOrCreateDatabase("ICD", Upload.MODE_PRIVATE,null);
+
+
+        txtUploaded = findViewById(R.id.txtUploaded);
+
 
         progressDialog = new ProgressDialog(Upload.this);
         progressDialog.setTitle("Uploading Data....");
@@ -50,6 +55,7 @@ public class Upload extends AppCompatActivity {
 //            Cursor CForNR =sqLiteDatabase.rawQuery("SELECT * FROM deal WHERE s = 0 ;",null);
 
             int CForNRNum = cForDeals.getCount();
+            txtUploaded.setText("To upload "+CForNRNum);
 
             if(CForNRNum != 0){
                 jsonParseStockAndPriceRangeTable(progressDialog);
@@ -172,7 +178,10 @@ public class Upload extends AppCompatActivity {
                                 }
 
                             }
-                            //TODO HERE
+
+                            Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal where s = 0  AND date =  date('now','localtime');",null);
+                            int nRow = cForDeals.getCount();
+                            txtUploaded.setText("To upload "+nRow);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
