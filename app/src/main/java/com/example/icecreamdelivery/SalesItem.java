@@ -112,7 +112,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         //get full total start
         //--------------------------------------------------------------------------------------
 
-        Cursor cDeal =sqLiteShops.rawQuery("SELECT SUM(Total),SUM(credit),SUM(cash) FROM deal WHERE s = 0 OR s = 1 AND date = date('now','localtime');",null);
+        Cursor cDeal =sqLiteShops.rawQuery("SELECT SUM(Total),SUM(credit),SUM(cash) FROM deal WHERE (s = 0 OR s = 1) AND date = date('now','localtime');",null);
         cDeal.moveToNext();
 
         total.setText("Grand Total "+cDeal.getString(0));
