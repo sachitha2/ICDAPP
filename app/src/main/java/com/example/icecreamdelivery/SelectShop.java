@@ -1,9 +1,11 @@
 package com.example.icecreamdelivery;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -251,6 +254,28 @@ public class SelectShop extends AppCompatActivity {
 
         }
     }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+
+        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+        alertDialog2.setTitle("Delete Data");
+        alertDialog2.setMessage("Are you sure you want to go back?.");
+        // Add the buttons
+        alertDialog2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                SelectShop.super.onBackPressed();
+
+            }
+        });
+
+
+        alertDialog2.show();
+
     }
 }
 

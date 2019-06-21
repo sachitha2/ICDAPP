@@ -26,6 +26,7 @@ public class Upload extends AppCompatActivity {
     ProgressDialog progressDialog;
     SQLiteDatabase sqLiteDatabase;
     TextView txtUploaded;
+    int step = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class Upload extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(Upload.this);
         progressDialog.setTitle("Uploading Data....");
-        progressDialog.setMessage("");
+        progressDialog.setMessage("STEP "+step);
         progressDialog.setCancelable(false);
 
 
@@ -131,7 +132,7 @@ public class Upload extends AppCompatActivity {
                     invoiceItems.put(oneInvoice);
 
 
-            if(i == 20){
+            if(i == 10){
                 break;
             }
             i++;
@@ -180,8 +181,22 @@ public class Upload extends AppCompatActivity {
                             }
 
                             Cursor cForDeals =sqLiteDatabase.rawQuery("SELECT * FROM deal where s = 0  AND date =  date('now','localtime');",null);
-                            int nRow = cForDeals.getCount();
-                            txtUploaded.setText("To upload "+nRow);
+
+                            //check here are there any data to upload
+                            ///TODO
+                            int CForNRNum = cForDeals.getCount();
+                            txtUploaded.setText("To upload "+CForNRNum);
+
+                            if(CForNRNum != 0){
+                                step++;
+                                progressDialog.setMessage("STEP "+step);
+                                jsonParseStockAndPriceRangeTable(progressDialog);
+                                progressDialog.show();
+                            }else{
+                                Log.d("SQL","Nodata to upload");
+                            }
+
+                            txtUploaded.setText("To upload "+CForNRNum);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

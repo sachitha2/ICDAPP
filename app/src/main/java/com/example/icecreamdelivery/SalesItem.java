@@ -202,7 +202,9 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
 
 
         BILL = BILL
-                + "\n-----------------------------------------------";
+                + "\n-----------------------------------------------\n" +
+                "   Total : "+cDeal.getString(0)+"\n" +
+                "   Cash : "+cDeal.getString(2)+"\n";
         BILL = BILL + "\n\n";
 
 
