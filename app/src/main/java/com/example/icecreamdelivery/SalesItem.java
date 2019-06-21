@@ -176,12 +176,18 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
             CForInvoice.moveToNext();
 
 
-            singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1),CForInvoice.getString(0),CForInvoice.getString(1));
 
-            myList.add(singleRow);
+
+
 
 
             if(CForInvoice.getString(0) != null){
+                singleRow = new SingleRowForSalesItems(c.getString(0),c.getString(1),CForInvoice.getString(0),CForInvoice.getString(1));
+
+                myList.add(singleRow);
+
+
+
                 BILL = BILL + "  "+c.getString(1)+" \n";
                 BILL = BILL + "\n " + String.format("%1$20s %2$11s %3$10s", CForInvoice.getString(0), "", CForInvoice.getString(1))+"\n";
                 Log.d("helloo","NULLLL");
