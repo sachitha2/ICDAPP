@@ -171,7 +171,7 @@ public class SalesItem extends AppCompatActivity  implements TextWatcher {
         while (c.moveToNext()){
 
             //Load Soled amount
-            Cursor CForInvoice =sqLiteShops.rawQuery("SELECT SUM(amount), SUM(amount*sPrice) FROM invoice WHERE itemId = "+c.getString(0)+" AND date = date('now','localtime') ;",null);
+            Cursor CForInvoice =sqLiteShops.rawQuery("SELECT SUM(amount), SUM(amount*sPrice) FROM invoice WHERE itemId = "+c.getString(0)+" AND date = date('now','localtime') AND s = 1 ;",null);
 
             CForInvoice.moveToNext();
 
